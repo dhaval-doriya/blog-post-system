@@ -21,10 +21,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        // $users = User::all();
         $users = User::where('role', 'user')->paginate(5);
-
-
         if ($request->ajax()) {
             $sort_by = $request->get('sortby');
             $sort_type = $request->get('sorttype');
@@ -84,7 +81,7 @@ class UserController extends Controller
         if ($user) {
             return view('backend.user.update', ['user' => $user]);
         }
-        return redirect()->route('dashboard')->with('error', 'something went wrong');
+        return redirect()->route('dashboard')->with('error', '');
     }
 
     /**
@@ -123,7 +120,7 @@ class UserController extends Controller
     {
         try {
             if (auth()->user()->role  !== 'admin') {
-                return redirect()->route('dashboard')->with('error', 'something went wrong');
+                return redirect()->route('dashboard')->with('error', '');
             }
             $user = User::find($id);
 
@@ -139,8 +136,7 @@ class UserController extends Controller
 
             return redirect()->route('user.all')->with('error', 'User Delete Failed');
         } catch (\Throwable $th) {
-            return redirect()->route('dashboard')->with('error', 'something went wrong');
-            // throw $th;
+            return redirect()->route('dashboard')->with('error', '');
         }
     }
 
@@ -204,8 +200,7 @@ class UserController extends Controller
                 return Redirect::back()->withErrors(['msg' => "Password is wrong"]);
             }
         } catch (\Throwable $th) {
-            return redirect()->route('dashboard')->with('error', 'something went wrong');
-            // throw $th;
+            return redirect()->route('dashboard')->with('error', ' ');
         }
     }
 
@@ -238,7 +233,7 @@ class UserController extends Controller
 
 
 
-    public function deleteProfilePic(Request $request, $id)
+    public function deleteProfilePic( $id)
     {
         $user = User::find($id);
         if (!$user) {

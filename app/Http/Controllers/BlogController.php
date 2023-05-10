@@ -43,8 +43,8 @@ class BlogController extends Controller
 
             return view('backend.blog.index', ['blogs' => $blogs]);
         } catch (\Throwable $th) {
-            // throw $th;
             return view('backend.blog.table', compact('blogs'));
+
         }
     }
 
@@ -66,7 +66,7 @@ class BlogController extends Controller
             return redirect()->route('dashboard')->with('error', "Don't Have any Active Category");
         } catch (\Throwable $th) {
             return redirect()->route('dashboard')->with('error', ' ');
-            // throw $th;
+
         }
     }
 
@@ -97,7 +97,7 @@ class BlogController extends Controller
             }
         } catch (\Throwable $th) {
             return redirect()->route('blog.index')->with('error', ' ');
-            // throw $th;
+
         }
     }
 
@@ -192,7 +192,7 @@ class BlogController extends Controller
             }
         } catch (\Throwable $th) {
             return redirect()->route('blog.index')->with('error', ' ');
-            // throw $th;
+
         }
     }
 
@@ -231,7 +231,7 @@ class BlogController extends Controller
                 return redirect()->route('blog.index')->with('error', 'Unauthenticated.');
             }
         } catch (\Throwable $th) {
-            // throw $th;
+
             return redirect()->route('blog.index')->with('error', ' ');
         }
     }

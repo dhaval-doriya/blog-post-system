@@ -34,14 +34,8 @@ class CategoryController extends Controller
                 ->orderBy($sort_by, $sort_type)
                 ->paginate(5);
 
-                return view('backend.category.table', compact('categories'))->render();
-
-
-            // return view('pagination_data', compact('data'))->render();
+            return view('backend.category.table', compact('categories'))->render();
         }
-
-
-
 
         if ($request->ajax()) {
             return view('backend.category.table', compact('categories'))->render();
@@ -86,7 +80,7 @@ class CategoryController extends Controller
             }
         } catch (\Throwable $th) {
             return redirect()->route('category.index')->with('error', 'something went wrong');
-            // throw $th;
+
         }
     }
 
@@ -117,12 +111,11 @@ class CategoryController extends Controller
             }
 
             if (auth()->user()->role == 'admin') {
-                // dd($category);
                 return view('backend.category.update', ['category' => $category]);
             }
             return redirect()->route('dashboard')->with('error', '401 Error Unauthorized Access');
         } catch (\Throwable $th) {
-            // throw $th;
+
             return redirect()->route('dashboard')->with('error', 'something went wrong');
         }
     }
@@ -138,7 +131,6 @@ class CategoryController extends Controller
     {
         try {
             if (auth()->user()->role == 'admin') {
-                // $category = Category::where('slug', $slug)->firstorfail();
                 $category = Category::find($id)->firstorfail();
 
                 $data = $request->all();
@@ -152,7 +144,6 @@ class CategoryController extends Controller
             }
             return redirect()->route('dashboard')->with('error', 'something went wrong');
         } catch (\Throwable $th) {
-            throw $th;
             return redirect()->route('dashboard')->with('error', 'something went wrong');
         }
     }
@@ -180,7 +171,6 @@ class CategoryController extends Controller
             }
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'something went wrong');
-            throw $th;
         }
     }
 
@@ -226,7 +216,4 @@ class CategoryController extends Controller
         }
         return response()->json(['success' => true, 'message' => 'Done !!', 'slug' => $slug]);
     }
-
-
-
 }

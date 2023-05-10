@@ -69,32 +69,19 @@
         <div id="dashboard">
 
             @if (count($blogs))
-            <div class="row">
-                <div class="col-12">
-                    <h1>Pending Blogs</h1>
-                </div>
-                <div class="col-12">
-                    <div class=" shadow-lg p-3  bg-white  ">
-                        <div class="   ">
-                            <input type="text" name="serach" id="serach" class="form-control rounded-pill"
-                                placeholder="Search" />
-                            <small>Search by blog Title, slug</small>
-                        </div>
-                    </div>
-                </div>
-
-                    {{-- <div class="col-8">
+                <div class="row">
+                    <div class="col-12">
                         <h1>Pending Blogs</h1>
                     </div>
-                    <div class=" shadow-lg p-3  bg-white  ">
-                        <div class="   ">
-                            <input type="text" name="serach" id="serach" class="form-control rounded-pill"
-                                placeholder="Search" />
-                            <small>Search by blog Title, slug</small>
+                    <div class="col-12">
+                        <div class=" shadow-lg p-3  bg-white  ">
+                            <div class="   ">
+                                <input type="text" name="serach" id="serach" class="form-control rounded-pill"
+                                    placeholder="Search" />
+                                <small>Search by blog Title, slug</small>
+                            </div>
                         </div>
-
-                    </div> --}}
-
+                    </div>
                     <div class="col-12 mt-3">
                         <div class="card shadow-lg p-3 mb-5 bg-white rounded">
                             <div class="card-body ">
@@ -108,7 +95,6 @@
                                                         name
                                                         <span id="name_icon"></span>
                                                     </th>
-                                                    {{-- <th>Blog Title</th> --}}
                                                     <th>Writer</th>
                                                     <th>categories </th>
                                                     <th>views </th>
@@ -155,10 +141,10 @@
                                 @endif
 
                                 <script src="{{ asset('assets/custom_js/redirect_table.js') }}"></script>
-                @endif
+            @endif
 
-            </div>
         </div>
+    </div>
 
 
     </div>

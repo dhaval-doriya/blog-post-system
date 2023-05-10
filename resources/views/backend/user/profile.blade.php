@@ -15,9 +15,6 @@
 
       <div class="card card-widget widget-user mt-5 m-5">
         <div class="widget-user-header text-white" style="background: LightGray url( 'https://images.unsplash.com/photo-1520190282873-afe1285c9a2a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1206&q=80') center center; height: 150px">
-          <!-- <h3 class="widget-user-username text-right">Elizabeth Pierce</h3>
-                <h5 class="widget-user-desc text-right">Web Designer</h5> -->
-
           <h3>
             <div class="widget-user-username text-right">
               <a href="{{route('user.update',['id'=>$user ?? ''->id])}}">

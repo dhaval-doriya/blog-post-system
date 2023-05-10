@@ -78,7 +78,6 @@
                         <div class="post-media">
                             <a href="{{route('blog.one', ['slug' => $blog->slug])}}" title="">
                                 <img class="mt-4" src="{{ asset('blog-cover-images//'.$blog->image) }}" alt=" " height="250px">
-                                <!-- <img src="frontside_assets/upload/garden_sq_02.jpg" alt="" class="img-fluid"> -->
                                 <div class="hovereffect"></div>
                             </a>
                         </div>
@@ -107,14 +106,14 @@
         </div>
     </div>
     @else
-    
+
     @if(Auth::check())
     @if(Auth::user()->role == 'admin')
     <div class="container">
         <h1 class="text-center">Currently Don't Have Enough Blogs To Display. </h1>
         <h3 class="text-center">You are admin so you can't Create Blog</h3>
     </div>
-    
+
     @else
     <div class="container">
         <h1 class="text-center">Currently Don't Have Enough Blogs To Display. </h1>
@@ -123,7 +122,7 @@
         </a></h3>
     </div>
     @endif
-    
+
     @else
     <div class="container">
         <h1 class="text-center">Currently Don't Have Enough Blogs To Display.</h1>

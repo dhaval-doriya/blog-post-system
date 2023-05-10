@@ -56,9 +56,6 @@
             </div><!-- end row -->
         </div><!-- end author-box -->
         <hr class="invis1">
-
-{{-- @include('frontend/layout/comment') --}}
-
     </div>
 </div>
 

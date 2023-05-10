@@ -86,14 +86,6 @@
                                     </div>
                                 </div>
                             </a>
-
-
-                            {{-- <a class="nav-link text-right" data-toggle="dropdown" href="#">
-                                <button type="button" class="btn btn-dark">
-                                    {{ Auth::user()->name }}
-                                </button>
-                            </a> --}}
-
                             <div class=" dropdown-menu dropdown-menu-lg dropdown-menu-right ">
                                 <a href=" {{ route('dashboard') }}">
                                     <button class="dropdown-item" class="btn btn-success"> Dashboard</button>

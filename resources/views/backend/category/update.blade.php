@@ -41,9 +41,7 @@
           </div>
         </form>
       </div>
-      <!-- /.col-->
     </div>
-    <!-- ./row -->
 </section>
 
 @endsection

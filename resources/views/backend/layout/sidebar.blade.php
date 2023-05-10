@@ -32,8 +32,6 @@
                     <li class="nav-item">
                         <a href="{{ route('category.index') }}" class="nav-link">
                             <i class="nav-icon fa fa-th-list" aria-hidden="true"></i>
-                            <!-- <i class="nav-icon fa fa-pie-chart" aria-hidden="true"></i> -->
-
                             <p>Category</p>
                         </a>
                     </li>

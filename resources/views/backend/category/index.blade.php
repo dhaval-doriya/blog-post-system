@@ -25,22 +25,6 @@
                     <div class="  ">
                         <input type="text" name="serach" id="serach" class="form-control rounded-pill" placeholder="Search" />
                         <small>Search by category Title, slug</small>
-
-                        {{-- <form id="search" data-action="{{ route('category.search') }}" method="post">
-                                @csrf
-                                <div class="form-row align-items-center">
-                                    <div class="col-auto my-1">
-                                        <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="text" class="form-control rounded-pill" id="inlineFormInputName"
-                                                placeholder="Search " name="search">
-                                        </div>
-                                    </div>
-                                    <div class="col-auto my-1">
-                                        <input type="submit" hidden />
-                                        <button type="submit" class="btn btn-primary rounded-pill mr-3">Search</button>
-                                    </div>
-                                </div>
-                            </form> --}}
                     </div>
                 </div>
             </div>
@@ -69,7 +53,6 @@
                                             @include('backend.category.table')
                                         </tbody>
                                     </table>
-                                    {{-- {!! $categories->links() !!} --}}
                                 </div>
                                 <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
                                 <input type="hidden" name="hidden_column_name" id="hidden_column_name" value="id" />

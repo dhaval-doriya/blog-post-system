@@ -11,7 +11,6 @@
             <div class="col-12 d-flex justify-content-between rounded shadow-lg p-3 ">
 
                 <div class="col-6 mb-3">
-                    {{-- <h2>Users</h2> --}}
                 </div>
 
                 <div class="col-6 d-flex justify-content-end  ">

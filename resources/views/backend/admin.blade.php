@@ -86,8 +86,6 @@
                 <div class="card shadow-lg p-3 mb-5 bg-white rounded">
                     <div class="card-body">
                         <div id="item-lists">
-
-                            <!-- <table id="example1" class="table table-bordered table-striped"> -->
                             <div class="table">
                                 <table class="table table-bordered table-striped">
                                     <thead>
