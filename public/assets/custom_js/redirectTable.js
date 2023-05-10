@@ -14,10 +14,9 @@ if (!window.location.hash || window.location.hash[1] == 1) {
 
     if (!rowCount) {
 
-        $('tabledata').empty();
-        // location.reload();
+        $('#tabledata').empty();
 
-        $('.tabledata').html(`<h1 class='text-center'>You don't have any Records  <a href='{{ route('blog.all') }}'>Click here to view</a></h1>`)
+        $('#tabledata').html(`<td colspan="7" class='text-center'>You don't have any Records <button onclick=location.reload()  class='btn btn-' >Click Here  Reload </button>   </td>`)
     }
 
 }
