@@ -34,18 +34,17 @@ class BlogController extends Controller
                 $query = $request->get('query');
                 $query = str_replace(" ", "%", $query);
 
-                $blogs =   $blogs->where('id', 'like', '%' . $query . '%')
+                $blogs =   Blog::where('id', 'like', '%' . $query . '%')
                     ->orWhere('name', 'like', '%' . $query . '%')
-                    ->orWhere('slug', 'like', '%' . $query . '%');
-
-                $blogs =   $blogs->orderBy($sort_by, $sort_type)->paginate(3);
+                    ->orWhere('slug', 'like', '%' . $query . '%')
+                    ->orderBy($sort_by, $sort_type)->paginate(3);
                 return view('backend.blog.table', compact('blogs'));
             }
 
             return view('backend.blog.index', ['blogs' => $blogs]);
         } catch (\Throwable $th) {
-            return redirect()->route('dashboard')->with('error', 'something went wrong');
             // throw $th;
+            return view('backend.blog.table', compact('blogs'));
         }
     }
 
@@ -66,7 +65,7 @@ class BlogController extends Controller
             }
             return redirect()->route('dashboard')->with('error', "Don't Have any Active Category");
         } catch (\Throwable $th) {
-            return redirect()->route('dashboard')->with('error', 'something went wrong');
+            return redirect()->route('dashboard')->with('error', ' ');
             // throw $th;
         }
     }
@@ -97,7 +96,7 @@ class BlogController extends Controller
                 return redirect()->route('blog.index')->with('error', "Can't Create Blog Now ");
             }
         } catch (\Throwable $th) {
-            return redirect()->route('blog.index')->with('error', 'something went wrong');
+            return redirect()->route('blog.index')->with('error', ' ');
             // throw $th;
         }
     }
@@ -138,7 +137,7 @@ class BlogController extends Controller
             return view('backend.blog.update',    $response);
         } catch (\Throwable $th) {
             throw $th;
-            return redirect()->route('blog.index')->with('error', 'something went wrong');
+            return redirect()->route('blog.index')->with('error', ' ');
         }
     }
 
@@ -192,7 +191,7 @@ class BlogController extends Controller
                 return redirect()->route('blog.index')->with('error', 'Can`t Update Blog Now ');
             }
         } catch (\Throwable $th) {
-            return redirect()->route('blog.index')->with('error', 'something went wrong');
+            return redirect()->route('blog.index')->with('error', ' ');
             // throw $th;
         }
     }
@@ -233,7 +232,7 @@ class BlogController extends Controller
             }
         } catch (\Throwable $th) {
             // throw $th;
-            return redirect()->route('blog.index')->with('error', 'something went wrong');
+            return redirect()->route('blog.index')->with('error', ' ');
         }
     }
 

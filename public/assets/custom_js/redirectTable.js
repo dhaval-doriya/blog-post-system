@@ -4,16 +4,20 @@ if (window.location.hash[1] > 1) {
 }
 
 
+
+
+
 if (!window.location.hash || window.location.hash[1] == 1) {
 
     var rowCount = $("#tabledata td").length;
-    // alert(rowCount); // Outputs: 4
-
+    // var query = $('#serach').val();
 
     if (!rowCount) {
 
-        $('.table').empty();
-        $('.table').html(`<h1 class='text-center'>You don't have any Records  <a href='{{ route('blog.all') }}'>Click here to view</a></h1>`)
+        $('tabledata').empty();
+        // location.reload();
+
+        $('.tabledata').html(`<h1 class='text-center'>You don't have any Records  <a href='{{ route('blog.all') }}'>Click here to view</a></h1>`)
     }
 
 }
