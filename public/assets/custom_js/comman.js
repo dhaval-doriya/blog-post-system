@@ -19,11 +19,8 @@ $(document).ready(function () {
             success: function (results) {
                 if (results.success === true) {
                     toastr.success('Status Changed');
-                    // console.log('Status Changed');
                 } else {
-                    toastr.error('get(error)');
-
-                    console.log('error');
+                    toastr.error('Error');
                 }
             }, error: function (response) {
                 Swal.fire({

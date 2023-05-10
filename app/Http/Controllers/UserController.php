@@ -97,13 +97,11 @@ class UserController extends Controller
         }
         $result  = $user->update($data);
         if ($result) {
-
             if (auth()->user()->role == 'admin') {
                 return redirect()->route('user.index')->with(['message' => 'User Updated Successfully']);
             }
             return redirect()->route('dashboard')->with(['message' => 'User Updated Successfully']);
         } else {
-
             if (auth()->user()->role == 'admin') {
                 return redirect()->route('user.index')->with(['error' => "Can't update user"]);
             }
@@ -120,12 +118,14 @@ class UserController extends Controller
     {
         try {
             if (auth()->user()->role  !== 'admin') {
-                return redirect()->route('dashboard')->with('error', '');
+                return redirect()->route('dashboard')->with('error', 'UnAuthorized');
             }
             $user = User::find($id);
 
+            if ($user->role === 'admin') {
+                return response()->json(['success' => false, 'message' => 'Admin Can`t be deleted!!']);
+            }
             deleteOneImage("profile-images", $user->profile_image);
-
             $deleted = $user->delete();
             if ($deleted) {
                 if ($request->ajax()) {
@@ -136,7 +136,7 @@ class UserController extends Controller
 
             return redirect()->route('user.all')->with('error', 'User Delete Failed');
         } catch (\Throwable $th) {
-            return redirect()->route('dashboard')->with('error', '');
+            return redirect()->route('dashboard')->with('error', 'Admin Can`t be deleted');
         }
     }
 
@@ -165,7 +165,7 @@ class UserController extends Controller
                 return response()->json(['success' => true, 'message' => 'Done !!']);
             }
         } else {
-            return response()->json(['success' => false, 'message' => "Error !!"]);
+            return response()->json(['success' => false, 'message' => "Admin Can not be Deactivated !!"]);
         }
     }
 
@@ -205,9 +205,13 @@ class UserController extends Controller
     }
 
 
+
+  /**
+     * [update ProfilePicture PUT  updateUser]
+     * @return [View] [Returns Image and upload status]
+     */
     public function profilePic(Request $request, $id)
     {
-        //patch
         $data = $request->all();
         $user = User::find($id);
         if (!$user) {
@@ -232,8 +236,11 @@ class UserController extends Controller
     }
 
 
-
-    public function deleteProfilePic( $id)
+  /**
+     * [Delete ProfilePicture Delete  updateUserProfile]
+     * @return [View] [Returns Image and Delete status]
+     */
+    public function deleteProfilePic($id)
     {
         $user = User::find($id);
         if (!$user) {
