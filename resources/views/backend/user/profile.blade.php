@@ -4,9 +4,6 @@
 @section('path', 'Profile')
 @section('Pagename', 'User')
 
-
-
-
 @section('maindata')
 <section class="content container-fluid">
 

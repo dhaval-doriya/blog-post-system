@@ -51,19 +51,5 @@
 
 
 @section('links')
-
     <script src="{{ asset('assets/custom_js/validate/categoryCreate.js') }}"></script>
-    <script>
-        // $(document).ready(function() {
-        //   $("#category-create").validate({
-        //     rules: {
-        //       name: "required",
-        //       slug: "required",
-        //     },
-        //     submitHandler: function(form) {
-        //       form.submit();
-        //     }
-        //   });
-        // });
-      </script>
 @endsection

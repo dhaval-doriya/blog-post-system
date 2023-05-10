@@ -68,7 +68,7 @@
                                     <div class="col-12 mt-3 p-3">
                                         <div class="container mt-4">
                                             <h1 class="text-center">You don't have blogs to <a
-                                                    href="{{ route('blog.index') }}">
+                                                    href="{{ route('blog.all') }}">
                                                     Click here to view
                                                 </a></h1>
                                         </div>
@@ -86,11 +86,6 @@
 
             </div>
         </div>
-    </div>
-    </div>
-
-
-    </div>
     </div>
 
 @endsection

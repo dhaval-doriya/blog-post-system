@@ -131,8 +131,6 @@
 
     </section>
 
-
-
 @endsection
 @section('links')
     <script src="{{ asset('assets/custom_js/uploadProfile.js') }}"></script>
