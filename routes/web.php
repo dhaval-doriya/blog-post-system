@@ -39,8 +39,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
         Route::put('/photo/{id}', [UserController::class, 'profilePic'])->name('profile.edit');
         Route::delete('/photo/{id}', [UserController::class, 'deleteProfilePic'])->name('profile.remove');
-
-        // Route::post('/search-user', [UserController::class, 'search'])->name('user.search');
     });
 
     //category routes
