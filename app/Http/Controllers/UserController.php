@@ -206,7 +206,7 @@ class UserController extends Controller
 
 
 
-  /**
+    /**
      * [update ProfilePicture PUT  updateUser]
      * @return [View] [Returns Image and upload status]
      */
@@ -236,7 +236,7 @@ class UserController extends Controller
     }
 
 
-  /**
+    /**
      * [Delete ProfilePicture Delete  updateUserProfile]
      * @return [View] [Returns Image and Delete status]
      */
@@ -253,9 +253,9 @@ class UserController extends Controller
             $result = $user->save();
 
             if ($result) {
-                return redirect()->back()->with('success', 'Profile Pic Deleted successfully!!');
+                return redirect()->route('user.edit', ['id' => $user->id])->with(['success' => true, 'message' => 'Profile Pic Deleted successfully!!']);
             }
-            return redirect()->back()->with('error', "Can't Delete a User profile picture");
+            return redirect()->route('user.edit', ['id' => $user->id])->with(['success' => false, 'message' => 'Cant Delete a User profile picture']);
         }
     }
 }

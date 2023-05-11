@@ -20,7 +20,14 @@ $(document).ready(function () {
         let page = 1;
         var table = $('#hidden_table_name').val();
 
+        query = $('#serach').val().replace(/\s{2,}/g, ' ');
         fetch_data(table, page, sort_type, column_name, query);
+
+        // if (query.length > 2) {
+        //     $('#searchMessage').hide()
+        // } else {
+        //     $('#searchMessage').show()
+        // }
     });
 
     $(document).on('keydown', '#serach', function () {
@@ -31,7 +38,9 @@ $(document).ready(function () {
         let page = 1;
         var table = $('#hidden_table_name').val();
 
+        query = $('#serach').val().replace(/\s{2,}/g, ' ');
         fetch_data(table, page, sort_type, column_name, query);
+
     });
 
 
@@ -137,7 +146,7 @@ function fetch_data(table, page, sort_type, sort_by, query) {
             sort_type + "&query=" + query,
         success: function (data) {
             $("tbody").empty().html(data);
-            // location.hash = page;
+            location.hash = page;
         },
         error: function (res) {
         },
@@ -146,17 +155,15 @@ function fetch_data(table, page, sort_type, sort_by, query) {
 
 
 
-    // if (!window.location.hash || window.location.hash[1] == 1) {
-    //     if ($("#tabledata td").length == 1) {
-    //         console.log('object');
-    //     // //     // if ($('#tabledata').is(':empty')) {
-    //         location.reload()
-    //     }
-    // }
+if (!window.location.hash || window.location.hash[1] == 1) {
+    if ($("#tabledata td").length == 1) {
+        location.reload()
+    }
+}
 
-      //Hash Change Code
-    // $(window).on('hashchange', function () {
-    //     if (window.location.hash) {
-    //         loadData()
-    //     }
-    // });
+//Hash Change Code
+// $(window).on('hashchange', function () {
+//     if (window.location.hash) {
+//         loadData()
+//     }
+// });

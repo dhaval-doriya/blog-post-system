@@ -23,9 +23,11 @@
                         @endif
                         <br>
                         <div class="   ">
-                            <input type="text" name="serach" id="serach" class="form-control rounded-pill"
-                                placeholder="Search" />
                             <small>Search by blog Title, slug</small>
+                            <input type="text" name="serach" id="serach" class="form-control rounded-pill"
+                            placeholder="Search" />
+                            <small class="text-danger" hidden id="searchMessage"> Enter Atleast 3 Charecters </small>
+                            <br>
                         </div>
                     </div>
                 </div>
@@ -41,7 +43,7 @@
                                                     <th class="sorting" data-sorting_type="asc" data-column_name="name"
                                                         style="cursor: pointer">
                                                         name
-                                                        <span id="name_icon"></span>
+                                                        <span id="name_icon"> <i class="fa fa-angle-down" aria-hidden="true"></i></span>
                                                     </th>
                                                     <th>Writer</th>
                                                     <th>categories </th>
