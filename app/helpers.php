@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 
-//Used For Update a Img tag inside Description
+//Used For Update a Img tag inside Blog Description
 function descriptionCheckImage($data)
 {
     $dom = new \DomDocument();
@@ -96,7 +96,6 @@ function getBlogs($request)
     } else {
         // $blogs =   Blog::where('id', '>' , '0');
         $blogs =   Blog::where('status', '0');
-
     }
 
     $sort_by = $request->get('sortby');
@@ -109,7 +108,6 @@ function getBlogs($request)
             ->orWhere('name', 'like', '%' . $query . '%')
             ->orWhere('slug', 'like', '%' . $query . '%')
             ->orWhere('status', 'like', '%' . $query . '%');
-
     }
 
     $blogs =   $blogs->orderBy($sort_by, $sort_type)->paginate(3);
@@ -118,25 +116,6 @@ function getBlogs($request)
 
 
 
-//Return Popular Categories
-function popularCategories($categories)
-{
-    $popular = [];
-
-    for ($i = 0; $i < count($categories); $i++) {
-        $popular[$i]['name'] = $categories[$i]->name;
-        $popular[$i]['slug'] = $categories[$i]->slug;
-        $popular[$i]['total'] = count($categories[$i]->blog);
-    }
-
-    usort($popular, function ($a, $b) {
-        return strcmp($b['total'], $a['total']);
-    });
-
-    $popular = array_slice($popular, 0, 5);
-
-    return $popular;
-}
 
 
 //For Blog View Count
@@ -172,4 +151,28 @@ function  saveProfilePic($user, $imageData)
     } else {
         return false;
     }
+}
+
+//For Homepage //returns a recent blog  categories  and popular categories
+function homepageData()
+{
+    $recentBlogs = Blog::latest()->where('status', 1)->take(3)->get();
+
+    $categories = Category::where('status', 1)->get();
+
+    $popular = [];
+
+    for ($i = 0; $i < count($categories); $i++) {
+        $popular[$i]['name'] = $categories[$i]->name;
+        $popular[$i]['slug'] = $categories[$i]->slug;
+        $popular[$i]['total'] = count($categories[$i]->blog);
+    }
+
+    usort($popular, function ($a, $b) {
+        return strcmp($b['total'], $a['total']);
+    });
+
+    $popular = array_slice($popular, 0, 5);
+
+    return  ['recentblogs' => $recentBlogs, 'categories' => $categories, 'popularcat' => $popular];
 }

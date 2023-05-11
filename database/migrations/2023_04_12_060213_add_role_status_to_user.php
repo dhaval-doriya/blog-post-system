@@ -16,7 +16,7 @@ class AddRoleStatusToUser extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->enum('role', ['user','admin'])->default('user')->after('password');
             $table->boolean('status')->default(1)->after('password');
-            $table->string('phone',15)->after('password');
+            $table->string('phone',25)->after('password');
         });
     }
 

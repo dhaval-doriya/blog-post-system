@@ -132,9 +132,9 @@ class CategoryController extends Controller
         try {
             if (auth()->user()->role == 'admin') {
                 $category = Category::find($id)->firstorfail();
-
                 $data = $request->all();
-                $cat =  $category->update(['name' => $data['name'], 'slug' => Str::slug($data['slug'])]);
+                $data['slug'] = Str::slug($data['slug']);
+                $cat =  $category->update($data);
 
                 if ($cat) {
                     return redirect()->route('category.index')->with('success', 'Category Created Successfully');
@@ -211,9 +211,8 @@ class CategoryController extends Controller
 
         $data = $data->get();
         if (count($data) > 0) {
-
             return response()->json(['success' => false,  'message' => 'Slug is Already Taken !!',]);
         }
-        return response()->json(['success' => true, 'message' => 'Done !!', 'slug' => $slug]);
+        return response()->json(['success' => true, 'message' => ' Slug is Available', 'slug' => $slug]);
     }
 }

@@ -81,34 +81,12 @@ $(document).ready(function () {
     });
 
 
-
-
-
-    //Hash Change Code
-    $(window).on('hashchange', function () {
-        if (window.location.hash) {
-            loadData()
-        }
-    });
-
-
-
     //prevent Loading
     $(window).on('load', function () {
         if (location.hash) {
             location.hash = 1
         }
     });
-
-
-    // if (!window.location.hash || window.location.hash[1] == 1) {
-    //     if ($("#tabledata td").length == 1) {
-    //         console.log('object');
-    //     // //     // if ($('#tabledata').is(':empty')) {
-    //         location.reload()
-    //     }
-    // }
-
 
     if (window.location.hash[1] > 1) {
         loadData()
@@ -159,7 +137,7 @@ function fetch_data(table, page, sort_type, sort_by, query) {
             sort_type + "&query=" + query,
         success: function (data) {
             $("tbody").empty().html(data);
-            location.hash = page;
+            // location.hash = page;
         },
         error: function (res) {
         },
@@ -167,3 +145,18 @@ function fetch_data(table, page, sort_type, sort_by, query) {
 }
 
 
+
+    // if (!window.location.hash || window.location.hash[1] == 1) {
+    //     if ($("#tabledata td").length == 1) {
+    //         console.log('object');
+    //     // //     // if ($('#tabledata').is(':empty')) {
+    //         location.reload()
+    //     }
+    // }
+
+      //Hash Change Code
+    // $(window).on('hashchange', function () {
+    //     if (window.location.hash) {
+    //         loadData()
+    //     }
+    // });

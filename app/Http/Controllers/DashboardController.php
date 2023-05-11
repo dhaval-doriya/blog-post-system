@@ -31,6 +31,7 @@ class DashboardController extends Controller
         //For User
         $blogs = Blog::where('user_id', auth()->user()->id);
         $statistics['totalblogs'] = count($blogs->get());
+        $statistics['views'] = $blogs->sum('views');
 
         if ($request->ajax()) {
             $blogs = getBlogs($request);

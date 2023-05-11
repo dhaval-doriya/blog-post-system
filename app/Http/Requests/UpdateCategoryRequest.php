@@ -25,7 +25,7 @@ class UpdateCategoryRequest extends FormRequest
     {
         return [
             'name' => 'required|max:200',
-            'slug' => 'required|max:200',
+            'slug' => 'required|max:200|unique:blogs',
         ];
     }
 }

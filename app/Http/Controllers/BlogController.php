@@ -44,7 +44,6 @@ class BlogController extends Controller
             return view('backend.blog.index', ['blogs' => $blogs]);
         } catch (\Throwable $th) {
             return view('backend.blog.table', compact('blogs'));
-
         }
     }
 
@@ -66,7 +65,6 @@ class BlogController extends Controller
             return redirect()->route('dashboard')->with('error', "Don't Have any Active Category");
         } catch (\Throwable $th) {
             return redirect()->route('dashboard')->with('error', ' ');
-
         }
     }
 
@@ -97,7 +95,6 @@ class BlogController extends Controller
             }
         } catch (\Throwable $th) {
             return redirect()->route('blog.index')->with('error', ' ');
-
         }
     }
 
@@ -136,8 +133,8 @@ class BlogController extends Controller
             $response = ['blog' => $blog, 'categories' => $categories, 'selected' => $selected];
             return view('backend.blog.update',    $response);
         } catch (\Throwable $th) {
-            throw $th;
-            return redirect()->route('blog.index')->with('error', ' ');
+            return redirect()->route('blog.index')->with('error', '');
+            // throw $th;
         }
     }
 
@@ -154,11 +151,9 @@ class BlogController extends Controller
                 return redirect()->route('blog.index')->with('error', 'Can`t Find Blog ');
             }
 
-
             if (auth()->user()->role !== 'admin' && auth()->user()->id !== $blog->user_id) {
                 return redirect()->route('blog.index')->with('error', 'unauthorized.');
             }
-
 
             $data = $request->all();
             $result = descriptionCheckImage($data['description']); //this function return array of images and html for description
@@ -192,7 +187,6 @@ class BlogController extends Controller
             }
         } catch (\Throwable $th) {
             return redirect()->route('blog.index')->with('error', ' ');
-
         }
     }
 
@@ -231,7 +225,6 @@ class BlogController extends Controller
                 return redirect()->route('blog.index')->with('error', 'Unauthenticated.');
             }
         } catch (\Throwable $th) {
-
             return redirect()->route('blog.index')->with('error', ' ');
         }
     }

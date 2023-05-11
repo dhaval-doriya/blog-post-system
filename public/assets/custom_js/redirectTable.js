@@ -4,9 +4,6 @@ if (window.location.hash[1] > 1) {
 }
 
 
-
-
-
 if (!window.location.hash || window.location.hash[1] == 1) {
 
     var rowCount = $("#tabledata td").length;

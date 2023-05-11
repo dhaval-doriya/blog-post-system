@@ -41,7 +41,7 @@
                 <!-- small box -->
                 <div class="small-box bg-warning shadow-lg rounded p-3">
                     <div class="inner">
-                        <h3>0</h3>
+                        <h3>{{ $statistics['views'] ?? '5' }}</h3>
                         <p>views</p>
                     </div>
                     <div class="icon">

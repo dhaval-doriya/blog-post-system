@@ -17,6 +17,15 @@ $(document).ready(function () {
             },
             dataType: 'JSON',
             success: function (results) {
+                toastr.options =
+                {
+                    "closeButton": true,
+                    "closeDuration": 300,
+                    "timeOut" : 2,
+                    "progressBar": true,
+                    "newestOnTop": true,
+                }
+
                 if (results.success === true) {
                     toastr.success('Status Changed');
                 } else {

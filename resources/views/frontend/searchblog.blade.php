@@ -9,7 +9,7 @@
 <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
     <div class="page-wrapper">
         <h1 class="text">
-            {{ $massage ?? ''}}
+            {{ $message ?? ''}}
         </h1>
         <div class="blog-list clearfix">
             @if(!count($blogs))
@@ -39,7 +39,7 @@
             </div>
             <hr class="invis">
             @endforeach
-     
+
             @endif
         </div>
     </div>

@@ -24,8 +24,8 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:200',
-            'phone' => 'required|max:15',
+            'name' => 'required|max:100|alpha',
+            'phone' => 'required|max:15|regex:/^([0-9\s\-\+\(\)]*)$/|',
         ];
     }
 }

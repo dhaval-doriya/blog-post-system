@@ -37,5 +37,10 @@ class Blog extends Model
         return $this->save();
     }
 
-  
+
+    public function totalViews()
+    {
+        return $this->sum('views');
+    }
+
 }

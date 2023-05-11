@@ -24,7 +24,11 @@ function uploadFile(file) {
     data = new FormData();
     data.append("file", file);
     data.append("_token", jQuery('meta[name="csrf-token"]').attr('content'));
-    console.log('object');
+
+    if (file.size > 2000000) {
+        toastr.error('Select Image Size < 2MB');
+        return false;
+    }
     $.ajax({
         data: data,
         type: "POST",
@@ -52,6 +56,11 @@ function uploadFile(file) {
 //for previewing image after selection of image
 function readURL(input) {
     if (input.files && input.files[0]) {
+        console.log();
+        if (input.files[0].size > 2000000) {
+            toastr.error('Select Image Size < 2MB');
+            $('#fileToUpload').val('')
+        }
         var reader = new FileReader();
         reader.onload = function(e) {
             $('#preview_image').attr('src', e.target.result).height(150);
@@ -59,6 +68,7 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
 
 
 
