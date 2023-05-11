@@ -72,7 +72,7 @@
                 <li class="nav-item">
                     <a href="{{ route('blog.all') }}" class="nav-link">
                         <i class="nav-icon  fa fa-home" aria-hidden="true"></i>
-                        <p> Visit Homepage</p>
+                        <p>  Homepage</p>
                     </a>
                 </li>
 

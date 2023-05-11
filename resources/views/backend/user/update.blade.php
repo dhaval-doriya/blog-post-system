@@ -106,7 +106,7 @@
 
                     @endif
 
-                    <form action="{{ route('user.edit', ['id' => $user->id]) }}" method="post"
+                    <form id="user-edit" action="{{ route('user.edit', ['id' => $user->id]) }}" method="post"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -115,11 +115,17 @@
                                 <label for="title">Name</label>
                                 <input type="name" class="form-control" placeholder="Enter name"
                                     value="{{ $user->name }}" name="name" id="name">
+                                @if ($errors->has('name'))
+                                    <p class="error text-danger">{{ $errors->first('name') }}</p>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="title">Phone</label>
                                 <input type="name" class="form-control" placeholder="Enter phone number"
                                     value="{{ $user->phone }}" name="phone" id="phone">
+                                @if ($errors->has('phone'))
+                                    <p class="error text-danger">{{ $errors->first('phone') }}</p>
+                                @endif
                             </div>
                         </div>
                         <div class="card-footer">

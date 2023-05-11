@@ -94,7 +94,6 @@ function getBlogs($request)
     if (auth()->user()->role == 'user') {
         $blogs = Blog::where('user_id', auth()->user()->id);
     } else {
-        // $blogs =   Blog::where('id', '>' , '0');
         $blogs =   Blog::where('status', '0');
     }
 

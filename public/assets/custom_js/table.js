@@ -1,7 +1,3 @@
-
-
-
-
 // search sort pagninate ajax
 
 $(document).ready(function () {
@@ -30,18 +26,16 @@ $(document).ready(function () {
         // }
     });
 
-    $(document).on('keydown', '#serach', function () {
-        var query = $('#serach').val();
-        var column_name = $('#hidden_column_name').val();
-        var sort_type = $('#hidden_sort_type').val();
-        // var page = $('#hidden_page').val();
-        let page = 1;
-        var table = $('#hidden_table_name').val();
-
-        query = $('#serach').val().replace(/\s{2,}/g, ' ');
-        fetch_data(table, page, sort_type, column_name, query);
-
-    });
+    // $(document).on('keydown', '#serach', function () {
+    //     var query = $('#serach').val();
+    //     var column_name = $('#hidden_column_name').val();
+    //     var sort_type = $('#hidden_sort_type').val();
+    //     // var page = $('#hidden_page').val();
+    //     let page = 1;
+    //     var table = $('#hidden_table_name').val();
+    //     query = $('#serach').val().replace(/\s{2,}/g, ' ');
+    //     fetch_data(table, page, sort_type, column_name, query);
+    // });
 
 
     $(document).on('click', '.sorting', function () {
@@ -116,13 +110,8 @@ $(document).ready(function () {
             getData(1);
 
         }
-
     }
-
-
 });
-
-
 
 
 //get data

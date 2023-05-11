@@ -40,8 +40,8 @@
                                             <tr>
                                                 <th class="sorting" data-sorting_type="asc" data-column_name="name"
                                                     style="cursor: pointer">
-                                                    name
-                                                    <span id="name_icon"></span>
+                                                    Name
+                                                    <span id="name_icon"><i class="fa fa-angle-up" aria-hidden="true"></i></span>
                                                 </th>
                                                 <th>Category Slug</th>
                                                 <th>Number of Blogs </th>

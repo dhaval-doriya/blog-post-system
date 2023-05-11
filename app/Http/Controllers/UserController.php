@@ -200,7 +200,7 @@ class UserController extends Controller
                 return Redirect::back()->withErrors(['msg' => "Password is wrong"]);
             }
         } catch (\Throwable $th) {
-            return redirect()->route('dashboard')->with('error', ' ');
+            return redirect()->route('dashboard')->with('error', '');
         }
     }
 

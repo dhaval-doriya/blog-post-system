@@ -45,17 +45,17 @@
                                                     <th class="sorting" data-sorting_type="asc" data-column_name="name"
                                                         style="cursor: pointer">
                                                         name
-                                                        <span id="name_icon"></span>
+                                                        <span id="name_icon"><i class="fa fa-angle-up" aria-hidden="true"></i></span>
                                                     </th>
                                                     <th class="sorting" data-sorting_type="asc" data-column_name="email"
                                                         style="cursor: pointer">
                                                         email
-                                                        <span id="email_icon"></span>
+                                                        <span id="email_icon"><i class="fa fa-angle-up" aria-hidden="true"></i></span>
                                                     </th>
                                                     <th class="sorting" data-sorting_type="asc" data-column_name="phone"
                                                     style="cursor: pointer">
                                                     phone
-                                                    <span id="phone_icon"></span>
+                                                    <span id="phone_icon"><i class="fa fa-angle-up" aria-hidden="true"></i></span>
                                                 </th>
                                                     <th>Total blogs</th>
                                                     <th>Total Views</th>
