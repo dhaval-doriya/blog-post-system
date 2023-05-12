@@ -189,8 +189,8 @@ class UserController extends Controller
         try {
             $request->validate(
                 [
-                    'old_password' => 'required|min:8',
-                    'confirm_password' => 'required|same:password|min:8'
+                    'old_password' => 'required|min:8|max:256',
+                    'confirm_password' => 'required|same:password|min:8|max:256'
                 ]
             );
             if (Hash::check($request->input('old_password'), Auth::user()->password)) {
@@ -200,7 +200,7 @@ class UserController extends Controller
                 return Redirect::back()->withErrors(['msg' => "Password is wrong"]);
             }
         } catch (\Throwable $th) {
-            return redirect()->route('dashboard')->with('error', '');
+            return redirect()->route('dashboard')->with('error', 'something went wrong');
         }
     }
 

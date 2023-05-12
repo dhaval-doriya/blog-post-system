@@ -54,7 +54,7 @@ class UserObserver
             $blog->delete();
         }
 
-        Log::info("This user $user->name , with and their blogs Deleted.");
+        Log::info("This user $user->name , and their blogs Deleted.");
     }
 
     /**

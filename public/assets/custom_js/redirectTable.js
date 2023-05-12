@@ -13,7 +13,7 @@ if (!window.location.hash || window.location.hash[1] == 1) {
 
         $('#tabledata').empty();
 
-        $('#tabledata').html(`<td colspan="7" class='text-center'>You don't have any Records <button onclick=location.reload()  class='btn btn-' >Click Here  Reload </button>   </td>`)
+        $('#tabledata').html(`<td colspan="7" class='text-center'> <h2>You don't have any Records <p onclick=location.reload()  class='btn btn-' >Click Here   </p>  </h2> </td>`)
     }
 
 }

@@ -20,7 +20,7 @@
           <h3 class="card-title">Change Password</h3>
         </div>
 
-        <form action="{{route('auth.password.change' , ['id'=> Auth::user()->id])}}" method="post">
+        <form id="change-password" action="{{route('auth.password.change' , ['id'=> Auth::user()->id])}}" method="post">
           @csrf
           <div class="card-body">
             @if($errors->has('msg'))
@@ -28,7 +28,7 @@
             @endif
             <div class="form-group">
               <label for="name">Current Password</label>
-              <input type="password" class="form-control" placeholder="Enter Current Password" name="old_password" id="name" required>
+              <input type="password" class="form-control" placeholder="Enter Current Password" name="old_password" id="old_password" required>
               @if($errors->has('old_password'))
               <div class="error text-danger">{{ $errors->first('old_password') }}</div>
               @endif
@@ -51,12 +51,17 @@
           <div class="card-footer">
             <button type="submit" class="btn btn-primary">Submit</button>
           </div>
-        </form>    
+        </form>
       </div>
     </div>
   </div>
 </div>
 
 
+
+@endsection
+@section('links')
+
+    <script src="{{ asset('assets/custom_js/validate/userChangePassword.js') }}"></script>
 
 @endsection
