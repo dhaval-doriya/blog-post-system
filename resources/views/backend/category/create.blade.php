@@ -3,9 +3,6 @@
 @section('path', 'create category')
 
 @section('Pagename', 'Category')
-
-
-
 @section('maindata')
 
 <div class=" container">
@@ -20,15 +17,15 @@
           @csrf
           <div class="card-body">
             <div class="form-group">
-              <label for="title">category title</label>
-              <input required type="name" class="form-control" placeholder="Enter Category name" name="name" id="name">
+              <label for="name">category title</label>
+              <input required type="text" class="form-control" placeholder="Enter Category name" name="name" id="name">
               @if($errors->has('name'))
               <div class="error text-danger">{{ $errors->first('name') }}</div>
               @endif
             </div>
             <div class="form-group">
               <label for="title">category slug</label>
-              <input required type="name" class="form-control " placeholder="Enter category slug" name="slug" id="slug" data-action="{{route('category.slug')}}" content="{{ csrf_token() }}">
+              <input required type="text" class="form-control " placeholder="Enter category slug" name="slug" id="slug" data-action="{{route('category.slug')}}" content="{{ csrf_token() }}">
               <p class="error-slug text-danger"></p>
               <p class="success-slug text-success"></p>
               @if($errors->has('slug'))
@@ -37,7 +34,7 @@
             </div>
           </div>
           <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button id="submit" type="submit" class="btn btn-primary">Submit</button>
           </div>
         </form>
       </div>
@@ -49,7 +46,6 @@
 
 @endsection
 
-
 @section('links')
-    <script src="{{ asset('assets/custom_js/validate/categoryCreate.js') }}"></script>
+    <script src="{{ asset('assets/custom_js/validate/category.js') }}"></script>
 @endsection

@@ -55,7 +55,10 @@
 
 
 
+<script src="{{ asset('assets/custom_js/validate/customValidate.js') }}"></script>
+
 <script src="{{ asset('assets/custom_js/table.js') }}"></script>
+
 
 <script src="{{ asset('assets/custom_js/comman.js') }}"></script>
 

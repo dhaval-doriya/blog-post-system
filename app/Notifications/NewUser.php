@@ -43,7 +43,7 @@ class NewUser extends Notification
         return (new MailMessage)
             ->line(' Thank you for Registration.')
             ->line("Your email is :  $notifiable->email  ")
-            ->line("Your Password is :  $notifiable->gpassword  ")
+            ->line("Your Password is :  $notifiable->generatedPassword  ")
             ->action('Notification Action', url('http://localhost:8000/login'))
             ->line('Thank you for using our application!');
     }

@@ -79,3 +79,6 @@
     </div>
 
 @endsection
+
+@section('links')
+@endsection

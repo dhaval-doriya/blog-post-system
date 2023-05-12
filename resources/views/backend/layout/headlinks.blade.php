@@ -20,11 +20,6 @@
 <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/summernote/summernote-bs4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/codemirror/codemirror.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/codemirror/theme/monokai.css') }}">
-<!-- //table links -->
-<link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
-
 <!-- select 2  -->
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
@@ -43,10 +38,13 @@
 
 <style>
   .error {
-    color: red;
+    color: rgb(240, 60, 60);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+
   };
 
-  .select2-selection__choice {
+      .select2-container--default .select2-selection--multiple .select2-selection__choice__display{
     color: black;
   }
 </style>

@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -25,17 +24,13 @@ class UserController extends Controller
         if ($request->ajax()) {
             $sort_by = $request->get('sortby');
             $sort_type = $request->get('sorttype');
-            $query = $request->get('query');
-            $query = str_replace(" ", "%", $query);
+            $query = str_replace(" ", "%", $request->get('query'));
 
-            $users = User::where('role', 'user');
-
-            $users =   $users->where('id', 'like', '%' . $query . '%')
-                ->orWhere('name', 'like', '%' . $query . '%')
-                ->orWhere('email', 'like', '%' . $query . '%')
-                ->orWhere('phone', 'like', '%' . $query . '%')
-                ->orderBy($sort_by, $sort_type)
-                ->paginate(5);
+            $users = User::where('role', 'user')->where(function ($q) use ($query) {
+                $q->orWhere('name', 'like', '%' . $query . '%')
+                    ->orWhere('email', 'like', '%' . $query . '%')
+                    ->orWhere('phone', 'like', '%' . $query . '%');
+                })->orderBy($sort_by, $sort_type)->paginate(5);
 
             return view('backend.user.table', compact('users'));
         }
@@ -58,10 +53,10 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $data = $request->all();
-        $gpassword = bin2hex(openssl_random_pseudo_bytes(4));
-        $data['password'] =  Hash::make($gpassword);
+        $generatedPassword = bin2hex(openssl_random_pseudo_bytes(4));
+        $data['password'] =  Hash::make($generatedPassword);
         $user = User::create($data);
-        $user->gpassword = $gpassword;
+        $user->generatedPassword = $generatedPassword;
         $user->notify(new NewUser("A new user has visited on your application."));
         if ($user) {
             return redirect()->route('user.index')->with(['message' => 'User Created Successfully']);

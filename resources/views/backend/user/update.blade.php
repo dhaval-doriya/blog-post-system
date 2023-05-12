@@ -112,7 +112,7 @@
                         @method('PUT')
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="title">Name</label>
+                                <label for="name">Name</label>
                                 <input type="name" class="form-control" placeholder="Enter name"
                                     value="{{ $user->name }}" name="name" id="name">
                                 @if ($errors->has('name'))
@@ -120,9 +120,9 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="title">Phone</label>
-                                <input type="name" class="form-control" placeholder="Enter phone number"
-                                    value="{{ $user->phone }}" name="phone" id="phone">
+                                <label for="phone">Phone</label>
+                                <input type="text" class="form-control" placeholder="Enter phone number"
+                                    value="{{ $user->phone }}" name="phone" id="phone" >
                                 @if ($errors->has('phone'))
                                     <p class="error text-danger">{{ $errors->first('phone') }}</p>
                                 @endif
@@ -140,4 +140,6 @@
 @endsection
 @section('links')
     <script src="{{ asset('assets/custom_js/uploadProfile.js') }}"></script>
+    <script src="{{ asset('assets/custom_js/validate/user.js') }}"></script>
+
 @endsection

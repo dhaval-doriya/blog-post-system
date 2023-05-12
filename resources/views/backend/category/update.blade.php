@@ -47,6 +47,6 @@
 @endsection
 @section('links')
 
-    <script src="{{ asset('assets/custom_js/validate/categoryUpdate.js') }}"></script>
+    <script src="{{ asset('assets/custom_js/validate/category.js') }}"></script>
 
 @endsection

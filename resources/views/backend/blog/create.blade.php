@@ -113,6 +113,6 @@
 @section('links')
 
     <script src="{{ asset('assets/custom_js/descriptionImageUpload.js') }}"></script>
-    <script src="{{ asset('assets/custom_js/validate/blogCreate.js') }}"></script>
+    <script src="{{ asset('assets/custom_js/validate/blog.js') }}"></script>
 
 @endsection

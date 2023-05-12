@@ -24,7 +24,7 @@
 
             <div class="form-group">
               <label for="title">name</label>
-              <input type="name" class="form-control" placeholder="Enter name" name="name" id="title">
+              <input type="name" class="form-control" placeholder="Enter name" name="name" id="name">
               @if($errors->has('name'))
               <div class="error text-danger">{{ $errors->first('name') }}</div>
               @endif
@@ -32,7 +32,7 @@
 
             <div class="form-group">
               <label for="title">email</label>
-              <input type="email" class="form-control" placeholder="Enter email" name="email" id="title">
+              <input type="email" class="form-control" placeholder="Enter email" name="email" id="email">
               @if($errors->has('email'))
               <div class="error text-danger">{{ $errors->first('email') }}</div>
               @endif
@@ -40,7 +40,7 @@
 
             <div class="form-group">
               <label for="title">phone</label>
-              <input type="tel" class="form-control" placeholder="Enter phone number" name="phone" id="title">
+              <input type="tel" class="form-control" placeholder="Enter phone number" name="phone" id="phone">
               @if($errors->has('phone'))
               <div class="error text-danger">{{ $errors->first('phone') }}</div>
               @endif
@@ -61,6 +61,6 @@
 @endsection
 @section('links')
 
-    <script src="{{ asset('assets/custom_js/validate/userCreate.js') }}"></script>
+    <script src="{{ asset('assets/custom_js/validate/user.js') }}"></script>
 
 @endsection

@@ -79,9 +79,9 @@ function deleteOneImage($path, $deleteImg)
 function getStatistics()
 {
     $statistics = [];
-    $statistics['totalblogs'] = count(Blog::all());
-    $statistics['totalusers'] = count(User::all());
-    $statistics['totalcategories'] = count(Category::all());
+    $statistics['totalblogs'] = Blog::count();
+    $statistics['totalusers'] = User::where('role','user')->count();
+    $statistics['totalcategories'] = Category::count();
 
     return $statistics;
 }
@@ -91,8 +91,9 @@ function getStatistics()
 //Get Blogs for AJAX Request
 function getBlogs($request)
 {
-    if (auth()->user()->role == 'user') {
-        $blogs = Blog::where('user_id', auth()->user()->id);
+    $user = auth()->user();
+    if ($user->role == 'user') {
+        $blogs = Blog::where('user_id', $user->id)->where('status', '0');
     } else {
         $blogs =   Blog::where('status', '0');
     }
@@ -109,7 +110,7 @@ function getBlogs($request)
             ->orWhere('status', 'like', '%' . $query . '%');
     }
 
-    $blogs =   $blogs->orderBy($sort_by, $sort_type)->paginate(3);
+    $blogs =   $blogs->orderBy($sort_by, $sort_type)->paginate(2);
     return $blogs;
 }
 
