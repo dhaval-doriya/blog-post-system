@@ -13,6 +13,7 @@ Auth::check();
 require __DIR__ . '/auth.php';
 
 
+
 Route::get('/', function () {
     return redirect(route('blog.all'));
 });
@@ -67,5 +68,5 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('/blog/{slug}', [HomeController::class, 'blog'])->name('blog.one');
     Route::get('/cat/{slug}', [HomeController::class, 'category'])->name('category.all');
     Route::post('/search-blog', [HomeController::class, 'search'])->name('search.blog');
-    Route::get('/user/{id}', [HomeController::class, 'blogsByUser'])->name('blog.user');
+    Route::get('/user/{id}/blog', [HomeController::class, 'blogsByUser'])->name('blog.user');
 });

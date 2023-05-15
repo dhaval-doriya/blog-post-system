@@ -18,6 +18,7 @@ $(document).ready(function () {
             short_description: {
                 required: true,
                 minlength: 50,
+                maxlength:200
             },
             description: {
                 required: true,
@@ -43,11 +44,13 @@ $(document).ready(function () {
             },
             short_description: {
                 required: "short_description is required",
-                minlength: "short_description should At least 3 characters"
+                minlength: "short_description should At least 50 characters",
+                maxlength: "short_description should At least 200 characters",
+
             },
             description: {
                 required: "description is required",
-                minlength: "description should At least 3 characters"
+                minlength: "description should At least 5 characters"
             },
 
 

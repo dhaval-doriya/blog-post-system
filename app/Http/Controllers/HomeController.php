@@ -15,9 +15,14 @@ class HomeController extends Controller
      * [blogs GET All the Blogs Homepage]
      * @return [View] [Returns Blogs]
      */
-    public function blogs()
+    public function blogs(Request $request)
     {
-        $blogs = Blog::where('status', 1)->Paginate(8);
+        $blogs = Blog::where('status', 1)->Paginate(3);
+
+        if ($request->ajax()) {
+            return  view('frontend.layout.blogList', compact('blogs'))->render();
+        }
+
         $response = homepageData();
         $response['blogs'] = $blogs;
         return view('frontend.blogs', $response);
@@ -41,14 +46,19 @@ class HomeController extends Controller
      * [category GET    All Blog By Category]
      * @return [Array] [Returns All Blogs By Categories]
      */
-    public function category($slug)
+    public function category(Request $request,$slug)
     {
         $cat = Category::where('slug', $slug)->firstorfail();
         $message = "Category : $cat->name ";
 
         $response = homepageData();
-        $response['blogs'] = $cat->blog;
+        $response['blogs'] = $cat->blog()->Paginate(3);
         $response['message'] = $message;
+
+        if ($request->ajax()) {
+            $blogs = $response['blogs'];
+            return  view('frontend.layout.blogList', compact('blogs'))->render();
+        }
 
         return view('frontend.searchblog',  $response);
     }
@@ -81,12 +91,17 @@ class HomeController extends Controller
      * @return [Array] [Returns All Blogs By USER]
      */
 
-    public function blogsByUser($id)
+    public function blogsByUser(Request $request,$id)
     {
         $user = User::where('id', $id)->firstorfail();
         $response = homepageData();
-        $response['blogs'] = $user->blogs;
+        $response['blogs'] = $user->blogs()->Paginate(3);
         $response['message'] = "All the Blogs by $user->name ";
+
+        if ($request->ajax()) {
+            $blogs = $response['blogs'];
+            return  view('frontend.layout.blogList', compact('blogs'))->render();
+        }
 
         return view('frontend.searchblog', $response);
     }

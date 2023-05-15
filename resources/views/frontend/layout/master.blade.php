@@ -18,6 +18,7 @@
 <!-- Site Icons -->
 <link rel="shortcut icon" href="{{ asset('assets/frontside/images/favicon.ico') }} " type="image/x-icon" />
 <link rel="apple-touch-icon" href="{{ asset('assets/frontside/images/apple-touch-icon.png') }}">
+<script src="{{ asset('assets/dashboard/plugins/jquery/jquery.min.js') }}"></script>
 
 <!-- Design fonts -->
 <link href="{{ asset('https://fonts.googleapis.com/css?family=Droid+Sans:400,700') }}" rel="stylesheet">
@@ -136,6 +137,7 @@
                         @endempty
 
                         @yield('mainblogs')
+
                         <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
                             <div class="sidebar widget ">
                                 <div class="widget">
@@ -232,7 +234,6 @@
                 })
             });
         </script>
-
+    <script src="{{ asset('assets/custom_js/infiniteLoadBlog.js') }}"></script>
 </body>
-
 </html>
