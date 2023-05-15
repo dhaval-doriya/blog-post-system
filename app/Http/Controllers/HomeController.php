@@ -72,11 +72,14 @@ class HomeController extends Controller
     public function Search(Request $request)
     {
         $blogs = [];
-        if ($request->search) {
-            $blogs = Blog::where('name', 'like', '%' . $request->search . '%')->where('status', 1)->Paginate(8);
+        $query =  $request->search;
+        if ($query) {
+            $blogs = Blog::where('status', '1')->where(function ($q) use ($query) {
+                $q->orWhere('name', 'like', '%' . $query . '%');
+            })->get();
         }
 
-        $message = "Result for $request->search ";
+        $message = 'Result for ' .  $query ;
         $response = homepageData();
         $response['blogs'] = $blogs;
         $response['message'] = $message;
@@ -91,7 +94,7 @@ class HomeController extends Controller
      * @return [Array] [Returns All Blogs By USER]
      */
 
-    public function blogsByUser(Request $request,$id)
+    public function blogsByUser(Request $request, $id)
     {
         $user = User::where('id', $id)->firstorfail();
         $response = homepageData();
