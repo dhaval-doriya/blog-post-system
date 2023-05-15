@@ -9,7 +9,7 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register') }}" id="registerUser">
             @csrf
 
             <!-- Name -->
@@ -33,7 +33,7 @@
                 <x-input id="phone" class="block mt-1 w-full" type="tel" name="phone" :value="old('phone')" required />
             </div>
 
-            
+
 
             <!-- Password -->
             <div class="mt-4">

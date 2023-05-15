@@ -26,18 +26,6 @@ $(document).ready(function () {
         // }
     });
 
-    // $(document).on('keydown', '#serach', function () {
-    //     var query = $('#serach').val();
-    //     var column_name = $('#hidden_column_name').val();
-    //     var sort_type = $('#hidden_sort_type').val();
-    //     // var page = $('#hidden_page').val();
-    //     let page = 1;
-    //     var table = $('#hidden_table_name').val();
-    //     query = $('#serach').val().replace(/\s{2,}/g, ' ');
-    //     fetch_data(table, page, sort_type, column_name, query);
-    // });
-
-
     $(document).on('click', '.sorting', function () {
         var column_name = $(this).data('column_name');
         var order_type = $(this).data('sorting_type');
@@ -135,6 +123,7 @@ function fetch_data(table, page, sort_type, sort_by, query) {
             sort_type + "&query=" + query,
         success: function (data) {
             $("tbody").empty().html(data);
+
             location.hash = page;
         },
         error: function (res) {

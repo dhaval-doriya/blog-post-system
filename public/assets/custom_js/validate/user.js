@@ -13,13 +13,15 @@ $(document).ready(function () {
             },
             phone: {
                 required: true,
+                maxlength: 25,
                 minlength: 10,
+                phone : phone
             },
         },
         messages: {
             name: {
                 required: "Name is required",
-                minlength: "name should At least 3 characters"
+                minlength: "Name should At least 3 characters"
             },
             email: {
                 required: "email is required",

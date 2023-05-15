@@ -12,14 +12,28 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Styles -->
+    <script src="{{ asset('assets/dashboard/plugins/jquery/jquery.min.js') }}"></script>
+    <!-- jquery validtion cdn  -->
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 
-    {{-- @include('backend.layout.headlinks')
-    @include('backend.layout.commanlinks') --}}
+    <script src="{{ asset('assets/custom_js/validate/customValidate.js') }}"></script>
+
+    <script src="{{ asset('assets/custom_js/validate/userAuthenticate.js') }}"></script>
+
+<style>
+    .error {
+    color: rgb(240, 60, 60);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+
+  };
+</style>
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
 </head>
 
 <body>

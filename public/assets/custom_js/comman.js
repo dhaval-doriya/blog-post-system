@@ -21,7 +21,7 @@ $(document).ready(function () {
                 {
                     "closeButton": true,
                     "closeDuration": 300,
-                    "timeOut" : 2,
+                    "timeOut": 2,
                     "progressBar": true,
                     "newestOnTop": true,
                 }
@@ -165,15 +165,7 @@ $(document).ready(function () {
 
 
 
-
     //check slug code
-
-
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    })
 
     $("#name").change(function (e) {
         $("#slug").val(convertToSlug($("#name").val()))
@@ -192,10 +184,20 @@ $(document).ready(function () {
     });
 
     function convertToSlug(Text) {
-        return Text.toLowerCase()
-            .replace(/[^\w ]+/g, '')
-            .replace(/ +/g, '-');
+        var $slug = '';
+        var trimmed = $.trim(Text);
+        $slug = trimmed.replace(/[^a-z0-9-]/gi, '-').
+        replace(/-+/g, '-').
+        replace(/^-|-$/g, '');
+        return $slug.toLowerCase();
     }
+
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    })
 
     function checkSlug() {
         $("#submit").attr("disabled", true);
@@ -236,7 +238,6 @@ $(document).ready(function () {
     }
 
 
-
     //load table data ajax
     function loadData() {
 
@@ -245,7 +246,7 @@ $(document).ready(function () {
             if (page == Number.NaN || page <= 0) {
                 return false;
             } else {
-                console.log(page);
+                // console.log(page);
                 getData(page);
             }
         } else {

@@ -73,16 +73,16 @@ function readURL(input) {
 
 
 //Jquery Validtion
-$("#blog-update").validate({
-    rules: {
-        'categories[]': "required",
-    },
-    messages: {
-        'categories[]': {
-            required: "Please Select Atlest one Category",
-        },
-    },
-    submitHandler: function (form) {
-        form.submit();
-    }
-});
+// $("#blog-update").validate({
+//     rules: {
+//         'categories[]': "required",
+//     },
+//     messages: {
+//         'categories[]': {
+//             required: "Please Select Atlest one Category",
+//         },
+//     },
+//     submitHandler: function (form) {
+//         form.submit();
+//     }
+// });

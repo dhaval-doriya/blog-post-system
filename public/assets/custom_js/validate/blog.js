@@ -8,17 +8,22 @@ $(document).ready(function () {
             },
             slug: {
                 required: true,
-                maxlength: 25,
-                minlength: 10,
-                phone: phone,
+            },
+            image: {
+                required: true,
+            },
+            'categories[]': {
+                required: true,
             },
             short_description: {
                 required: true,
-                minlength: 3,
+                minlength: 50,
             },
             description: {
                 required: true,
-                minlength: 3,
+                minlength: 5,
+                maxlength: 65000,
+
             },
         },
         messages: {
@@ -28,17 +33,23 @@ $(document).ready(function () {
             },
             slug: {
                 required: "slug is required",
-                maxlength: 25,
-                minlength:"Name should At least 3 characters"
+            },
+            image: {
+                required: "image is required",
+            },
+            'categories[]': {
+                required: "atleast one categories  required",
+
             },
             short_description: {
-                required: true,
-                minlength: 3,
+                required: "short_description is required",
+                minlength: "short_description should At least 3 characters"
             },
             description: {
-                required: true,
-                minlength: 3,
+                required: "description is required",
+                minlength: "description should At least 3 characters"
             },
+
 
         }
     });
@@ -48,13 +59,54 @@ $(document).ready(function () {
 
     $("#blog-update").validate({
         rules: {
-            name: "required",
-            slug: "required",
-            short_description: "required",
-            description: "required",
+            name: {
+                required: true,
+                minlength: 3,
+            },
+            slug: {
+                required: true,
+            },
+            image: {
+                required: true,
+            },
+            'categories[]': {
+                required: true,
+            },
+            short_description: {
+                required: true,
+                minlength: 50,
+            },
+            description: {
+                required: true,
+                minlength: 5,
+                maxlength: 65000,
+
+            },
         },
-        submitHandler: function (form) {
-            form.submit();
+        messages: {
+            name: {
+                required: "Name is required",
+                minlength: "Name should At least 3 characters"
+            },
+            slug: {
+                required: "slug is required",
+            },
+            image: {
+                required: "image is required",
+            },
+            'categories[]': {
+                required: "atleast one categories  required",
+
+            },
+            short_description: {
+                required: "short_description is required",
+                minlength: "short_description should At least 3 characters"
+            },
+            description: {
+                required: "description is required",
+                minlength: "description should At least 3 characters"
+            },
+
         }
     });
 });

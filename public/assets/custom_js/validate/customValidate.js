@@ -9,13 +9,76 @@ $(document).ready(function () {
         "Please Enter a Valid Phone Number."
     );
 
-    //email
+
+    // /^[a-zA-Z]+$/
     jQuery.validator.addMethod(
-        "email",
+        "checkName",
         function (value, element) {
-            const regexp = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+            const regexp = /^[a-zA-Z]+$/;
+
             return this.optional(element) || value.match(regexp);
         },
-        "Please Enter a Valid Email Address."
+        "Please Enter a Valid Name."
     );
+
+
+    // jQuery.validator.addMethod(
+    //     "checkSlug",
+    //     function (value, element) {
+    //         checkSlug(value)
+    //         // return this.optional(element) || checkSlug(value);
+    //     },
+    //     "Slug is not available"
+    // );
+
+
+    //ajax request for slug check
+    // $.ajaxSetup({
+    //     headers: {
+    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //     }
+    // })
+
+    // function checkSlug(value) {
+    //     // $("#submit").attr("disabled", true);
+    //     // let isSuccess = false;
+    //     let data = {
+    //         _token: $('meta[name="csrf-token"]').attr('content'),
+    //         slug: $("#slug").val(),
+
+    //     }
+    //     if ($('#slug').attr('data-id')) {
+    //         data.id = $('#slug').attr('data-id');
+    //     }
+    //     $.ajax({
+    //         type: 'POST',
+    //         url: $('#slug').attr('data-action'),
+    //         data: data,
+    //         // dataType: 'JSON',
+    //         dataType:"html",
+
+    //         success: function (results) {
+    //             console.log(results);
+    //             return results;
+    //             // isSuccess = results === "true" ? false : true
+    //             if (results !== '') {
+    //                 $("#submit").attr("disabled", true);
+    //                 return false;
+    //             } else {
+    //                 $("#submit").attr("disabled", false);
+    //                 return true;
+    //             }
+    //         },
+
+    //         error: function (response) {
+    //             return false;
+
+    //             // console.log(response);
+
+    //         }
+
+    //     });
+    //     // return isSuccess;
+    // }
+
 });

@@ -1,15 +1,3 @@
-$(document).ready(function () {
-    $("#category-create").validate({
-        rules: {
-            name: "required",
-            slug: "required",
-        },
-        submitHandler: function (form) {
-            form.submit();
-        }
-    });
-});
-
 
 //validtion for change password page
 $(document).ready(function () {
@@ -22,6 +10,7 @@ $(document).ready(function () {
             },
             slug: {
                 required: true,
+                minlength: 3,
             },
         },
         messages: {
@@ -39,14 +28,24 @@ $(document).ready(function () {
 
     $("#category-update").validate({
         rules: {
-            name: "required",
-            slug: "required",
+            name: {
+                required: true,
+                minlength: 3,
+            },
+            slug: {
+                required: true,
+                checkSlug: 'checkSlug',
+            },
         },
         messages: {
+            name: {
+                required: "Name is required",
+                minlength: "name should At least 3 characters"
+            },
+            slug: {
+                required: "slug is required",
+            },
 
-        },
-        submitHandler: function (form) {
-            form.submit();
         }
     });
 

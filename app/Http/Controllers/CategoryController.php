@@ -80,7 +80,6 @@ class CategoryController extends Controller
             }
         } catch (\Throwable $th) {
             return redirect()->route('category.index')->with('error', 'something went wrong');
-
         }
     }
 
@@ -198,21 +197,30 @@ class CategoryController extends Controller
      */
     public function categorySlugCheck(Request $request)
     {
-        $request->validate([
-            'slug' => 'required|max:200|unique:blogs',
-        ]);
 
-        $slug = Str::slug($request->input('slug'));
-        $data = Category::where('slug', $slug);
 
-        if ($request->id) {
-            $data = $data->where('id', '!=', $request->id);
+        try {
+            $request->validate([
+                'slug' => 'required|max:200|unique:blogs',
+            ]);
+
+            $slug = Str::slug($request->input('slug'));
+            $data = Category::where('slug', $slug);
+
+            if ($request->id) {
+                $data = $data->where('id', '!=', $request->id);
+            }
+
+            $data = $data->get();
+
+            if (count($data) > 0) {
+                // return false;
+                return response()->json(['success' => false,  'message' => 'Slug is Already Taken !!',]);
+            }
+            // return true;
+            return response()->json(['success' => true, 'message' => ' Slug is Available', 'slug' => $slug]);
+        } catch (\Throwable $th) {
+            // throw $th;
         }
-
-        $data = $data->get();
-        if (count($data) > 0) {
-            return response()->json(['success' => false,  'message' => 'Slug is Already Taken !!',]);
-        }
-        return response()->json(['success' => true, 'message' => ' Slug is Available', 'slug' => $slug]);
     }
 }
