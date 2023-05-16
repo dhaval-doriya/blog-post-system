@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helper as HelpersHelper;
 use App\Http\Requests\StoreBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
 use App\Models\Blog;
 use App\Models\BlogImage;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use PhpParser\Node\Expr\Throw_;
-
 class BlogController extends Controller
 {
     /**
@@ -75,9 +76,16 @@ class BlogController extends Controller
     public function store(StoreBlogRequest $request)
     {
         try {
+
+            $time = microtime();
+
             $data = $request->all();
-            $data['image'] = saveOneImage('blog-cover-images', $request->image); //blog-cover-images
+            $data['image'] =  saveOneImage('blog-cover-images', $request->image); //blog-cover-images
             $data['user_id'] = auth()->user()->id;
+
+
+            // $result = $descriptionCheckImage($data['description']); //this function return array of images and html for description
+
 
             $result = descriptionCheckImage($data['description']); //this function return array of images and html for description
 
@@ -88,6 +96,8 @@ class BlogController extends Controller
             $result = moveImages($result['ImgNames'], $blog->id);  //Move Images to Blog-post-image folder
 
             if ($blog) {
+            Log::info($time . ':test');
+
                 return redirect()->route('blog.index')->with(['message' => 'Blog Created Successfully']);
             } else {
                 return redirect()->route('blog.index')->with('error', "Can't Create Blog Now ");

@@ -19,7 +19,8 @@
                                                     href="{{ route('category.all', ['slug' => $cat->slug]) }}"
                                                     title="">{{ $cat->name }}</a></span>
                                         @endforeach
-                                        <h4><a href="{{ route('blog.one', ['slug' => $blogs[count($blogs) - 1]->slug]) }}"
+
+                                        <h4><a href="{{ route('blog.one', ['slug' => $recentblogs[1]->slug]) }}"
                                                 title="">{{ $recentblogs[1]->name }}</a></h4>
                                         <small><a
                                                 href="{{ route('blog.one', ['slug' => $blogs[count($blogs) - 1]->slug]) }}"
@@ -50,8 +51,8 @@
                                                 title="">{{ $recentblogs[2]->created_at->format('dS F Y') }}</a></small>
                                         <small><a href="#" title=""> By
                                                 {{ $recentblogs[2]->user->name }}</a></small>
-                                    </div><!-- end meta -->
-                                </div><!-- end shadow-desc -->
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -107,11 +108,6 @@
                         </path>
                     </svg>
                 </div>
-                {{-- <div class="row">
-                    <div class="col-md-12">
-                        {{ $blogs->links() }}
-                    </div>
-                </div> --}}
             </div>
         @else
             @if (Auth::check())

@@ -11,6 +11,10 @@
     <div class="blog-meta big-meta col-md-8">
         @forelse($blog->category as $cat)
         <span class="bg-aqua"><a href="{{route('category.all', ['slug' => $cat->slug])}}" title="">{{$cat->name}} </a></span>&nbsp; &nbsp;
+
+
+        {{-- <span class="bg-aqua"><a href="?slug={{$cat->slug}}" title="">{{$cat->name}} </a></span>&nbsp; &nbsp; --}}
+
         @endforeach
         <h4><a href="{{route('blog.one', ['slug' => $blog->slug])}}" title=""> {{$blog->name}}</a></h4>
         <p>{{$blog->short_description}}</p>

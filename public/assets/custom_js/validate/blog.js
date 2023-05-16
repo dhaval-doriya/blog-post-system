@@ -70,7 +70,7 @@ $(document).ready(function () {
                 required: true,
             },
             image: {
-                required: true,
+                required: false,
             },
             'categories[]': {
                 required: true,
@@ -103,7 +103,7 @@ $(document).ready(function () {
             },
             short_description: {
                 required: "short_description is required",
-                minlength: "short_description should At least 3 characters"
+                minlength: "short_description should At least 50 characters",
             },
             description: {
                 required: "description is required",

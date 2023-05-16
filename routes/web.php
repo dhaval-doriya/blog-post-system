@@ -66,5 +66,5 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('/', [HomeController::class, 'blogs'])->name('blog.all');
     Route::get('/blog/{slug}', [HomeController::class, 'blog'])->name('blog.one');
     Route::get('/cat/{slug}', [HomeController::class, 'category'])->name('category.all');
-    Route::get('/user/{id}/blog', [HomeController::class, 'blogsByUser'])->name('blog.user');
+    Route::get('/user/{id}', [HomeController::class, 'blogsByUser'])->name('blog.user');
 });

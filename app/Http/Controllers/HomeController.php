@@ -23,9 +23,11 @@ class HomeController extends Controller
         $query  = $request->get('search');
 
         if ($query) {
+            $response['message'] = "Search Result for  : $query ";
             $response['blogs'] = Blog::where('status', '1')->Where('name', 'like', '%' . $query . '%')->get();
             return view('frontend.searchblog', $response);
         }
+
         if ($request->ajax()) {
             return  view('frontend.layout.blogList', compact('blogs'))->render();
         }
@@ -55,11 +57,9 @@ class HomeController extends Controller
     public function category(Request $request, $slug)
     {
         $cat = Category::where('slug', $slug)->firstorfail();
-        $message = "Category : $cat->name ";
-
         $response = homepageData();
         $response['blogs'] = $cat->blog()->Paginate(3);
-        $response['message'] = $message;
+        $response['message'] = "Category : $cat->name ";
 
         if ($request->ajax()) {
             $blogs = $response['blogs'];

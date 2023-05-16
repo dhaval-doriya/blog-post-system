@@ -137,13 +137,14 @@
                             </div>
                         @endempty
 
+
                         @yield('mainblogs')
 
                         <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
                             <div class="sidebar widget ">
                                 <div class="widget">
                                     <h2 class="widget-title">Search</h2>
-                                    <form class="form-inline search-form" id="search-form" >
+                                    <form class="form-inline search-form" id="search-form" method="get">
 
                                         <div class="form-group">
                                             <input id="search" type="text" class="form-control"
@@ -175,12 +176,12 @@
                                     </div>
 
                                 @endif
-                                @if ($popularcat ?? [])
+                                @if ($popularCategories ?? [])
                                     <div class="widget">
                                         <h2 class="widget-title">Popular Categories</h2>
                                         <div class="link-widget">
                                             <ul>
-                                                @foreach ($popularcat as $category)
+                                                @foreach ($popularCategories as $category)
                                                     <li><a
                                                             href="{{ route('category.all', ['slug' => $category['slug']]) }}">{{ $category['name'] }}
                                                             <span>({{ $category['total'] }})</span></a></li>
@@ -206,52 +207,9 @@
         <script src="{{ asset('assets/frontside/js/tether.min.js') }}"></script>
         <script src="{{ asset('assets/frontside/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('assets/frontside/js/custom.js') }}"></script>
-        <script>
-            // for log out alert
-            $("body").on("click", ".user-logout", function() {
-                var current_object = $(this);
-                swal.fire({
-                    title: "Are you sure Youn want to Logout?",
-                    icon: "question",
-                    showCancelButton: true,
-                    dangerMode: true,
-                    cancelButtonClass: '#DD6B55',
-                    confirmButtonColor: '#dc3545',
-                    type: "warning",
-                    showCancelButton: !0,
-                    confirmButtonText: "Yes",
-                    cancelButtonText: "No!",
-                    reverseButtons: !0
-                }).then(function(e) {
-                    if (e.value === true) {
-                        $("#user_logout").submit();
-                    } else {
-                        e.dismiss;
-                    }
-                }, function(dismiss) {
-                    return false;
-                })
-            });
-        </script>
+        <script src="{{ asset('assets/custom_js/frontend/logout.js') }}"></script>
 
-        <script>
-            $('#search-form').submit(function(e) {
-                e.preventDefault();
-                $.ajax({
-                    type: "get",
-                    data: {
-                        'query': $('#search').val()
-                    }
-                    success: function(data) {
-
-                        console.log(data);
-
-                    },
-                    error: function(res) {},
-                })
-            });
-        </script>
-        <script src="{{ asset('assets/custom_js/infiniteLoadBlog.js') }}"></script>
+        <script src="{{ asset('assets/custom_js/frontend/infiniteLoadBlog.js') }}"></script>
 </body>
 
 </html>

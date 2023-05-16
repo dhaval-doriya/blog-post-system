@@ -136,10 +136,19 @@ $(document).ready(function () {
             },
         },
         messages: {
+            email: {
+                required: "email is required",
+            },
             password: {
                 required: "password is required",
                 minlength: "password should At least 8 characters"
             },
+            password_confirmation: {
+                required: "confirm password is required",
+                minlength: "confirm password should At least 8 characters",
+                equalTo:"confirm Please ensure your passwords match."
+            },
+
         }
     });
 

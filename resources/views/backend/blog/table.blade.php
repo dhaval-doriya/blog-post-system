@@ -5,13 +5,8 @@
         <tr>
             <td> {{ $blog->name }}</td>
             <td> {{ $blog->user->name }}</td>
-            <td>
-                @forelse($blog->category as $cat)
-                    <p>
-                        {{ $cat->name }} <br>
-                    </p>
-                @endforeach
-            </td>
+            <td>    {{count($blog->category)}}</td>
+
             <td> {{ $blog->views }} </td>
             <td>
                 <img src="{{ asset('blog-cover-images/' . $blog->image) }}" id="uploaded_image" class="img-responsive "
