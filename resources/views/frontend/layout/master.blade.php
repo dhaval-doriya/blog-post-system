@@ -45,7 +45,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.5.1/sweetalert2.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.5.1/sweetalert2.all.min.js"></script>
 
+<link href="{{ asset('assets/custom_css/socialmedia.css') }}" rel="stylesheet">
+
+
 <meta name="csrf-token" content="{{ csrf_token() }}">
+@yield('css')
 
 </head>
 
@@ -208,6 +212,7 @@
         <script src="{{ asset('assets/frontside/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('assets/frontside/js/custom.js') }}"></script>
         <script src="{{ asset('assets/custom_js/frontend/logout.js') }}"></script>
+        <script src="https://kit.fontawesome.com/704ff50790.js" crossorigin="anonymous"></script>
 
         <script src="{{ asset('assets/custom_js/frontend/infiniteLoadBlog.js') }}"></script>
 </body>

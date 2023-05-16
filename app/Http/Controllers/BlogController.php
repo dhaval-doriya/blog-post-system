@@ -28,15 +28,13 @@ class BlogController extends Controller
             }
 
             if ($request->ajax()) {
-                $sort_by = $request->get('sortby');
-                $sort_type = $request->get('sorttype');
                 $query = $request->get('query');
                 $query = str_replace(" ", "%", $query);
 
                 $blogs =   Blog::where('id', 'like', '%' . $query . '%')
                     ->orWhere('name', 'like', '%' . $query . '%')
                     ->orWhere('slug', 'like', '%' . $query . '%')
-                    ->orderBy($sort_by, $sort_type)->paginate(3);
+                    ->orderBy($request->get('sortby'), $request->get('sorttype'))->paginate(3);
                 return view('backend.blog.table', compact('blogs'));
             }
 
@@ -76,16 +74,9 @@ class BlogController extends Controller
     public function store(StoreBlogRequest $request)
     {
         try {
-
-            $time = microtime();
-
             $data = $request->all();
             $data['image'] =  saveOneImage('blog-cover-images', $request->image); //blog-cover-images
             $data['user_id'] = auth()->user()->id;
-
-
-            // $result = $descriptionCheckImage($data['description']); //this function return array of images and html for description
-
 
             $result = descriptionCheckImage($data['description']); //this function return array of images and html for description
 
@@ -96,8 +87,6 @@ class BlogController extends Controller
             $result = moveImages($result['ImgNames'], $blog->id);  //Move Images to Blog-post-image folder
 
             if ($blog) {
-            Log::info($time . ':test');
-
                 return redirect()->route('blog.index')->with(['message' => 'Blog Created Successfully']);
             } else {
                 return redirect()->route('blog.index')->with('error', "Can't Create Blog Now ");
