@@ -81,7 +81,6 @@ if (!function_exists('deleteOneImage')) {
 
 // Get Statistics for dashboard
 if (!function_exists('getStatistics')) {
-
     function getStatistics()
     {
         $statistics = [];
@@ -96,7 +95,6 @@ if (!function_exists('getStatistics')) {
 
 //Get Blogs for AJAX Request
 if (!function_exists('getBlogs')) {
-
     function getBlogs($request)
     {
         $user = auth()->user();
@@ -122,9 +120,6 @@ if (!function_exists('getBlogs')) {
         return $blogs;
     }
 }
-
-
-
 
 //For Blog View Count
 if (!function_exists('blogViewed')) {

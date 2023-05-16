@@ -64,7 +64,6 @@ $(document).ready(function () {
         var sort_type = $('#hidden_sort_type').val();
         var table = $('#hidden_table_name').val();
         var query = $('#serach').val();
-        console.log(page);
 
         $('li').removeClass('active');
         $(this).parent().addClass('active');
@@ -91,7 +90,7 @@ $(document).ready(function () {
             if (page == Number.NaN || page <= 0) {
                 return false;
             } else {
-                console.log(page);
+                // console.log(page);
                 getData(page);
             }
         } else {

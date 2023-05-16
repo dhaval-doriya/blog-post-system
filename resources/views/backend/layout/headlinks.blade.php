@@ -35,6 +35,8 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <link rel="stylesheet" href="{{ asset('assets/custom_css/toggle_button.css') }}">
+{{-- phone  --}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css">
 
 <style>
   .error {

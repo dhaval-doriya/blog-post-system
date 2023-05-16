@@ -66,7 +66,7 @@
                                             Click here to Create
                                         </a></h1>
                                 </div>
-                                <script src="{{ asset('assets/custom_js/redirect_table.js') }}"></script>
+                                <script src="{{ asset('assets/custom_js/redirectTable.js') }}"></script>
                             @endif
 
                         </div>

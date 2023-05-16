@@ -23,62 +23,57 @@ $(document).ready(function () {
 
 
     // jQuery.validator.addMethod(
-    //     "checkSlug",
-    //     function (value, element) {
-    //         checkSlug(value)
-    //         // return this.optional(element) || checkSlug(value);
-    //     },
-    //     "Slug is not available"
+    //     "checkSlug", checkSlug(), "Slug is not available"
     // );
 
 
-    //ajax request for slug check
-    // $.ajaxSetup({
-    //     headers: {
-    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //     }
-    // })
 
-    // function checkSlug(value) {
-    //     // $("#submit").attr("disabled", true);
-    //     // let isSuccess = false;
-    //     let data = {
-    //         _token: $('meta[name="csrf-token"]').attr('content'),
-    //         slug: $("#slug").val(),
 
-    //     }
-    //     if ($('#slug').attr('data-id')) {
-    //         data.id = $('#slug').attr('data-id');
-    //     }
-    //     $.ajax({
-    //         type: 'POST',
-    //         url: $('#slug').attr('data-action'),
-    //         data: data,
-    //         // dataType: 'JSON',
-    //         dataType:"html",
 
-    //         success: function (results) {
-    //             console.log(results);
-    //             return results;
-    //             // isSuccess = results === "true" ? false : true
-    //             if (results !== '') {
-    //                 $("#submit").attr("disabled", true);
-    //                 return false;
-    //             } else {
-    //                 $("#submit").attr("disabled", false);
-    //                 return true;
-    //             }
-    //         },
+    function checkSlug() {
+        $("#submit").attr("disabled", true);
 
-    //         error: function (response) {
-    //             return false;
+        let data = {
+            _token: $(this).attr('content'),
+            slug: $("#slug").val(),
+        }
 
-    //             // console.log(response);
+        if ($('#slug').attr('data-id')) {
+            data.id = $('#slug').attr('data-id');
+        }
 
-    //         }
+        $.ajax({
 
-    //     });
-    //     // return isSuccess;
-    // }
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+
+            type: 'POST',
+            url: $('#slug').attr('data-action'),
+            data: data,
+            dataType: 'JSON',
+            success: function (results) {
+                console.log(results);
+                if (results.success === true) {
+                    // $("#slug").val(results.slug)
+                    // $(".error-slug").empty()
+                    // $(".success-slug").text('This Slug is Available')
+                    // $("#submit").attr("disabled", false);
+                } else {
+                    // $(".success-slug").empty()
+                    // $(".error-slug").text(results.message)
+                    // $("#submit").attr("disabled", true);
+                }
+            },
+
+            error: function (response) {
+                // const myJSON = JSON.parse(response['responseText']);
+                // $(".success-slug").empty()
+                // $(".error-slug").text(myJSON.errors.slug)
+            }
+        });
+    }
+
+
 
 });

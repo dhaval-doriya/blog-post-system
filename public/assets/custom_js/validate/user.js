@@ -13,7 +13,7 @@ $(document).ready(function () {
             },
             phone: {
                 required: true,
-                maxlength: 25,
+                maxlength: 20,
                 minlength: 10,
                 phone : phone
             },
@@ -27,7 +27,9 @@ $(document).ready(function () {
                 required: "email is required",
             },
             phone: {
-                required: "Phone is required",
+                required:  "phone is required",
+                maxlength: "The phone must not be greater than 20 characters.",
+                minlength: "phone should At least 10 characters",
             },
 
         }
@@ -42,7 +44,7 @@ $(document).ready(function () {
             },
             phone: {
                 required: true,
-                maxlength: 25,
+                maxlength: 20,
                 minlength: 10,
                 phone: phone,
             },
@@ -53,7 +55,9 @@ $(document).ready(function () {
                 minlength: "Name should At least 3 characters"
             },
             phone: {
-                required: "Phone is required",
+                required:  "phone is required",
+                maxlength: "The phone must not be greater than 20 characters.",
+                minlength: "phone should At least 10 characters",
             },
 
         }

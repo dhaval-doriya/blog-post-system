@@ -20,6 +20,7 @@ $(document).ready(function () {
             },
             slug: {
                 required: "slug is required",
+                minlength: "slug should At least 3 characters"
             },
 
         }
@@ -34,6 +35,7 @@ $(document).ready(function () {
             },
             slug: {
                 required: true,
+                minlength: 3,
                 checkSlug: 'checkSlug',
             },
         },
@@ -44,6 +46,8 @@ $(document).ready(function () {
             },
             slug: {
                 required: "slug is required",
+                minlength: "slug should At least 3 characters"
+
             },
 
         }

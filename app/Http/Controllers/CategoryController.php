@@ -197,7 +197,9 @@ class CategoryController extends Controller
      */
     public function categorySlugCheck(Request $request)
     {
-
+        // $request->validate([
+        //     'slug' => "required|max:200|unique:blogs|$request->id",
+        // ]);
 
         try {
             $request->validate([
