@@ -1,9 +1,9 @@
 var page = 1;
 
-let dataloaded = true
+let dataLoaded = true
 
 $(window).on('scroll', () => {
-    if ($(window).scrollTop() + $(window).height() >= ($(document).height() - 20) && dataloaded) {
+    if ($(window).scrollTop() + $(window).height() >= ($(document).height() - 20) && dataLoaded) {
         page++;
         loadBlogs(page);
     }
@@ -11,7 +11,7 @@ $(window).on('scroll', () => {
 
 
 function loadBlogs(page) {
-     dataloaded = false;
+    dataLoaded = false;
     $.ajax({
         url: "?page=" + page,
         datatype: "html",
@@ -21,13 +21,13 @@ function loadBlogs(page) {
         },
         success: function (results) {
             if (results === '') {
-                $('.auto-load').html("<h1> We don't have more blogs to display :( </h1>");
-                dataloaded = false;
+                $('.auto-load').html("<h1> We don't have more blogs to display :( </h1> <br><button onclick='topFunction()' id='myBtn' title='Go to top'>Scroll Top</button>");
+                dataLoaded = false;
                 return;
             }
             $('.auto-load').hide();
             $('#blog-list').append(results);
-             dataloaded = true;
+            dataLoaded = true;
 
 
         },
@@ -38,4 +38,9 @@ function loadBlogs(page) {
         }
     });
 
+}
+
+
+function topFunction() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }

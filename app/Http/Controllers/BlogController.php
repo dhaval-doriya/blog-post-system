@@ -9,7 +9,7 @@ use App\Models\BlogImage;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-
+use PhpParser\Node\Expr\Throw_;
 
 class BlogController extends Controller
 {
@@ -41,7 +41,8 @@ class BlogController extends Controller
 
             return view('backend.blog.index', ['blogs' => $blogs]);
         } catch (\Throwable $th) {
-            return view('backend.blog.table', compact('blogs'));
+            return redirect()->route('backend.blog.index')->with('error', ' ');
+
         }
     }
 

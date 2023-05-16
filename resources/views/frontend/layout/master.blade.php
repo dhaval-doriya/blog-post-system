@@ -72,17 +72,19 @@
 
                             <a class="nav-link  text-right" data-toggle="dropdown" href="#">
                                 <div class="user-panel pb-2 mb-2 d-flex ">
-                                    <p >
+                                    <p>
                                         {{ Auth::user()->name }}
 
-                                    </p >
+                                    </p>
                                     <div class="image ">
                                         @if (Auth::user()->profile_image)
                                             <img src="  {{ asset('profile-images/' . Auth::user()->profile_image) }}"
-                                                class="img-circle rounded-circle " alt="User Image" height="45px" width="45px">
+                                                class="img-circle rounded-circle " alt="User Image" height="45px"
+                                                width="45px">
                                         @else
                                             <img src="{{ asset('assets/dashboard/dist/img/user2-160x160.jpg') }}"
-                                                class="img-circle elevation-2 rounded-circle " alt="User Image" height="45px" width="45px">
+                                                class="img-circle elevation-2 rounded-circle " alt="User Image"
+                                                height="45px" width="45px">
                                         @endif
                                     </div>
                                 </div>
@@ -114,7 +116,6 @@
         <div class="header-section ">
             <!-- 3main image secrion  -->
             @yield('topblogs')
-
             <section class="section wb">
                 <div class="container-fluid">
                     <div class="row">
@@ -142,12 +143,11 @@
                             <div class="sidebar widget ">
                                 <div class="widget">
                                     <h2 class="widget-title">Search</h2>
-                                    <form class="form-inline search-form" action="{{ route('search.blog') }}"
-                                        method="post">
-                                        @csrf
+                                    <form class="form-inline search-form" id="search-form" >
+
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Search Blog "
-                                                name="search">
+                                            <input id="search" type="text" class="form-control"
+                                                placeholder="Search Blog " name="search">
                                         </div>
                                         <!-- <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button> -->
                                     </form>
@@ -159,7 +159,6 @@
                                         <h2 class="widget-title">Recent Posts</h2>
                                         <div class="blog-list-widget">
                                             <div class="list-group">
-                                                <!-- recentblogs -->
                                                 @foreach ($recentblogs as $blog)
                                                     <a href=" {{ route('blog.one', ['slug' => $blog->slug]) }}"
                                                         class="list-group-item list-group-item-action flex-column align-items-start">
@@ -234,6 +233,25 @@
                 })
             });
         </script>
-    <script src="{{ asset('assets/custom_js/infiniteLoadBlog.js') }}"></script>
+
+        <script>
+            $('#search-form').submit(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "get",
+                    data: {
+                        'query': $('#search').val()
+                    }
+                    success: function(data) {
+
+                        console.log(data);
+
+                    },
+                    error: function(res) {},
+                })
+            });
+        </script>
+        <script src="{{ asset('assets/custom_js/infiniteLoadBlog.js') }}"></script>
 </body>
+
 </html>

@@ -18,12 +18,18 @@ class HomeController extends Controller
     public function blogs(Request $request)
     {
         $blogs = Blog::where('status', 1)->Paginate(3);
+        $response = homepageData();
 
+        $query  = $request->get('search');
+
+        if ($query) {
+            $response['blogs'] = Blog::where('status', '1')->Where('name', 'like', '%' . $query . '%')->get();
+            return view('frontend.searchblog', $response);
+        }
         if ($request->ajax()) {
             return  view('frontend.layout.blogList', compact('blogs'))->render();
         }
 
-        $response = homepageData();
         $response['blogs'] = $blogs;
         return view('frontend.blogs', $response);
     }
@@ -46,7 +52,7 @@ class HomeController extends Controller
      * [category GET    All Blog By Category]
      * @return [Array] [Returns All Blogs By Categories]
      */
-    public function category(Request $request,$slug)
+    public function category(Request $request, $slug)
     {
         $cat = Category::where('slug', $slug)->firstorfail();
         $message = "Category : $cat->name ";
@@ -62,31 +68,6 @@ class HomeController extends Controller
 
         return view('frontend.searchblog',  $response);
     }
-
-
-
-    /**
-     * [Search POST  All Blog By Search query]
-     * @return [Array] [Returns All Blogs By Search]
-     */
-    public function Search(Request $request)
-    {
-        $blogs = [];
-        $query =  $request->search;
-        if ($query) {
-            $blogs = Blog::where('status', '1')->where(function ($q) use ($query) {
-                $q->orWhere('name', 'like', '%' . $query . '%');
-            })->get();
-        }
-
-        $message = 'Result for ' .  $query ;
-        $response = homepageData();
-        $response['blogs'] = $blogs;
-        $response['message'] = $message;
-
-        return view('frontend.searchblog', $response);
-    }
-
 
 
     /**
