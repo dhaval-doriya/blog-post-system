@@ -22,26 +22,18 @@ class BlogController extends Controller
     {
         try {
             if (auth()->user()->role == 'admin') {
-                $blogs = Blog::paginate(3);
+                $blogs = Blog::whereNotNull('status');
             } else {
-                $blogs = Blog::where('user_id', auth()->user()->id)->paginate(3);
+                $blogs = Blog::where('user_id', auth()->user()->id);
             }
 
             if ($request->ajax()) {
-                $query = $request->get('query');
-                $query = str_replace(" ", "%", $query);
-
-                $blogs =   Blog::where('id', 'like', '%' . $query . '%')
-                    ->orWhere('name', 'like', '%' . $query . '%')
-                    ->orWhere('slug', 'like', '%' . $query . '%')
-                    ->orderBy($request->get('sortby'), $request->get('sorttype'))->paginate(3);
+                $blogs = BlogHelper::getBlogs($request, $blogs);
                 return view('backend.blog.table', compact('blogs'));
             }
-
-            return view('backend.blog.index', ['blogs' => $blogs]);
+            return view('backend.blog.index', ['blogs' => $blogs->paginate(3)]);
         } catch (\Throwable $th) {
             return redirect()->route('backend.blog.index')->with('error', ' ');
-
         }
     }
 
@@ -56,9 +48,9 @@ class BlogController extends Controller
             if (auth()->user()->role !== 'user') {
                 return redirect()->route('dashboard')->with('error', "Your Admin Can't Create Blog");
             }
-            $categories = Category::where('status', 1)->get();
-            if (count($categories) > 0) {
-                return view('backend.blog.create', ['categories' => $categories]);
+            $categories = Category::where('status', 1);
+            if ($categories->count() > 0) {
+                return view('backend.blog.create', ['categories' => $categories->get()]);
             }
             return redirect()->route('dashboard')->with('error', "Don't Have any Active Category");
         } catch (\Throwable $th) {
@@ -78,19 +70,13 @@ class BlogController extends Controller
             $data['image'] =  Helpers::saveOneImage('blog-cover-images', $request->image); //blog-cover-images
             $data['user_id'] = auth()->user()->id;
 
-            $result = BlogHelper::descriptionCheckImage($data['description']); //this function return array of images and html for description
-
+            $result = BlogHelper::descriptionCheckImage($data['description']); //this function return array of images and description
             $data['description'] =  $result['description'];
             $blog =  Blog::create($data);
             $blog->category()->attach($request->input('categories'));
 
             $result = BlogHelper::moveImages($result['ImgNames'], $blog->id);  //Move Images to Blog-post-image folder
-
-            if ($blog) {
-                return redirect()->route('blog.index')->with(['message' => 'Blog Created Successfully']);
-            } else {
-                return redirect()->route('blog.index')->with('error', "Can't Create Blog Now ");
-            }
+            return redirect()->route('blog.index')->with(['message' => 'Blog Created Successfully']);
         } catch (\Throwable $th) {
             return redirect()->route('blog.index')->with('error', 'something went wrong please try again');
         }
@@ -102,7 +88,7 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         return redirect()->route('blog.index'); //Currently Blog Don't Require This Route
     }
@@ -119,6 +105,7 @@ class BlogController extends Controller
                 return redirect()->route('blog.index')->with('error', "Can't Find Blog");
             }
 
+            //check for authorization of blog
             if (auth()->user()->role !== 'admin' && auth()->user()->id !== $blog->user_id) {
                 return redirect()->route('blog.index')->with('error', 'unauthorized.');
             }
@@ -131,7 +118,7 @@ class BlogController extends Controller
             $response = ['blog' => $blog, 'categories' => $categories, 'selected' => $selected];
             return view('backend.blog.update',    $response);
         } catch (\Throwable $th) {
-            return redirect()->route('blog.index')->with('error', '');
+            return redirect()->route('blog.index')->with('error', 'something went wrong please try again');
             // throw $th;
         }
     }
@@ -144,11 +131,12 @@ class BlogController extends Controller
     {
         try {
             $blog = Blog::find($id);
-
+            //check blog
             if (!$blog) {
                 return redirect()->route('blog.index')->with('error', 'Can`t Find Blog ');
             }
 
+            //check for authorization of blog
             if (auth()->user()->role !== 'admin' && auth()->user()->id !== $blog->user_id) {
                 return redirect()->route('blog.index')->with('error', 'unauthorized.');
             }
@@ -178,13 +166,9 @@ class BlogController extends Controller
             }
 
             $result =  $blog->update($data);
-            if ($result) {
-                return redirect()->route('blog.index')->with('message', 'Blog Updated Successfully');
-            } else {
-                return redirect()->route('blog.index')->with('error', 'Can`t Update Blog Now ');
-            }
+            return redirect()->route('blog.index')->with('message', 'Blog Updated Successfully');
         } catch (\Throwable $th) {
-            return redirect()->route('blog.index')->with('error', ' ');
+            return redirect()->route('blog.index')->with('error', 'something went wrong please try again');
         }
     }
 
@@ -200,30 +184,26 @@ class BlogController extends Controller
             if (!$blog) {
                 return redirect()->route('blog.index')->with('error', 'Can`t Find Blog ');
             }
-
-            if (auth()->user()->role === 'admin' || auth()->user()->id === $blog->user_id) {
-
-                //Get a Images of Description and Delete it
-                $blogImages = BlogImage::where('blog_id', $blog->id);
-                $images = $blogImages->pluck('image')->toArray();
-                BlogHelper::deleteImages($images, $blog->id);  //Delete Images to Blog-post-image folder
-                $blogImages->whereIn('image', $images)->delete();
-
-                $blog->category()->detach(); //delete Records of Blog From Bridge table
-
-                Helpers::deleteOneImage('blog-cover-images', $blog->image); //blog-cover-images
-
-                $delete = $blog->delete();
-                if ($delete && $request->ajax()) {
-                    return response()->json(['success' => true, 'message' => 'Record Deleted Successfully !!']);
-                } else {
-                    return response()->json(['success' => false, 'message' => 'Failed to Delete !!']);
-                }
-            } else {
-                return redirect()->route('blog.index')->with('error', 'Unauthenticated.');
+            //check for authorization of blog
+            if (auth()->user()->role !== 'admin' && auth()->user()->id !== $blog->user_id) {
+                return response()->json(['success' => false, 'message' => 'Unauthenticated!']);
             }
+
+            //Get a Images of Description and Delete it
+            $blogImages = BlogImage::where('blog_id', $blog->id);
+            //Delete Images from Blog-post-image folder
+            $images = $blogImages->pluck('image')->toArray();
+            BlogHelper::deleteImages($images, $blog->id);
+            $blogImages->whereIn('image', $images)->delete();
+
+            $blog->category()->detach(); //delete Records of Blog From Bridge table
+            Helpers::deleteOneImage('blog-cover-images', $blog->image); //blog-cover-images
+
+            $blog->delete();
+            return response()->json(['success' => true, 'message' => 'Record Deleted Successfully !!']);
         } catch (\Throwable $th) {
-            return redirect()->route('blog.index')->with('error', ' ');
+            return redirect()->route('blog.index')->with('error', 'something went wrong please try again');
+            // throw $th;
         }
     }
 
@@ -258,33 +238,26 @@ class BlogController extends Controller
             $data = $data->where('id', '!=', $request->id);
         }
         $data = $data->get();
-
         if (count($data) > 0) {
             return response()->json(['success' => false,  'message' => 'This Slug is Already Taken !!', 'slug' => $slug]);
         }
-
         return response()->json(['success' => true, 'message' => 'This Slug is Available', 'slug' => $slug]);
     }
 
 
     /**
-     * [checkDescription POST Uploadimage ]
+     * [checkDescription POST UploadImage ]
      * @return [JSON] [Returns Image URL]
      */
     public function checkDescription(Request $request)
     {
+        if (!$request->ajax()) {
+            return response()->json(['error' => 'Unauthenticated.'], 401);
+        }
         $request->validate([
             'file' => 'required|max:2048',
         ]);
-
-        $data = $request->all();
-        $myimage = time() . '.' . $data['file']->extension();
-        $request->file->move(public_path('temp-blog-images/'), $myimage);
-        $url  = url('/temp-blog-images/' . $myimage);
-
-        if ($request->ajax()) {
-            return response()->json(['success' => true,  'url' => $url]);
-        }
-        return response()->json(['error' => 'Unauthenticated.'], 401);
+        $url = BlogHelper::saveTempImages($request);
+        return response()->json(['success' => true,  'url' => $url]);
     }
 }

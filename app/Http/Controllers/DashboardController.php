@@ -16,28 +16,26 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         if (auth()->user()->role == 'admin') {
-            $blogs = Blog::where('status', 0)->paginate(2);
+            $blogs = Blog::where('status', 0);
             $statistics = Helpers::getStatistics();
-
             if ($request->ajax()) {
-                $blogs = BlogHelpers::getBlogs($request);
+                $blogs = BlogHelpers::getBlogs($request, $blogs);
                 return view('backend.layout.admintable', compact('blogs'));
             }
 
-            return view('backend.admin', ['blogs' => $blogs, 'statistics' => $statistics]);
+            return view('backend.admin', ['blogs' => $blogs->paginate(3), 'statistics' => $statistics]);
         }
 
         //For User
-        $blogs = Blog::where('user_id', auth()->user()->id);
+        $blogs = Blog::where('user_id', auth()->user()->id)->where('status', 0);
         $statistics['totalblogs'] = count($blogs->get());
         $statistics['views'] = $blogs->sum('views');
 
         if ($request->ajax()) {
-            $blogs = BlogHelpers::getBlogs($request);
+            $blogs = BlogHelpers::getBlogs($request ,$blogs);
             return view('backend.blog.table', compact('blogs'));
         }
-        $blogs = $blogs->where('status', 0)->paginate(2);
 
-        return view('backend.user', ['blogs' => $blogs, 'statistics' => $statistics]);
+        return view('backend.user', ['blogs' => $blogs->paginate(3), 'statistics' => $statistics]);
     }
 }

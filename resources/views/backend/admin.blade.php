@@ -76,11 +76,10 @@
                     <div class="   ">
                         <input type="text" name="serach" id="serach" class="form-control rounded-pill"
                             placeholder="Search" />
-                        <small>Search by blog Title, slug</small>
+                        <small>Search Pending blog by Title, slug</small>
                     </div>
                 </div>
             </div>
-
 
             <div class="col-12 mt-3">
                 <div class="card shadow-lg p-3 mb-5 bg-white rounded">

@@ -12,7 +12,6 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
 
-
     /**
      * [blogs GET All the Blogs Homepage]
      * @return [View] [Returns Blogs]

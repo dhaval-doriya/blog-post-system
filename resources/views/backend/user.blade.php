@@ -78,7 +78,7 @@
                             <div class="   ">
                                 <input type="text" name="serach" id="serach" class="form-control rounded-pill"
                                     placeholder="Search" />
-                                <small>Search by blog Title, slug</small>
+                                <small>Search Pending blog by Title, slug</small>
                             </div>
                         </div>
                     </div>

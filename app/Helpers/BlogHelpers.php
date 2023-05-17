@@ -45,7 +45,6 @@ class BlogHelpers extends Helpers
         }
     }
 
-
     //delete images of blog
     public static function deleteImages($array)
     {
@@ -58,31 +57,24 @@ class BlogHelpers extends Helpers
         }
     }
 
-    // for dashboard
-    public static  function getBlogs($request)
+    //get blogs for index page
+    public static function getBlogs($request, $blogs)
     {
-        $user = auth()->user();
-        if ($user->role == 'user') {
-            $blogs = Blog::where('user_id', $user->id)->where('status', '0');
-        } else {
-            $blogs =   Blog::where('status', '0');
-        }
-
         $sort_by = $request->get('sortby');
         $sort_type = $request->get('sorttype');
         $query = $request->get('query');
         $query = str_replace(" ", "%", $query);
 
-        if ($query != '') {
-            $blogs =   $blogs->where('id', 'like', '%' . $query . '%')
+        $blogs =  $blogs->where(function ($q) use ($query) {
+            $q->where('id', 'like', '%' . $query . '%')
                 ->orWhere('name', 'like', '%' . $query . '%')
                 ->orWhere('slug', 'like', '%' . $query . '%')
                 ->orWhere('status', 'like', '%' . $query . '%');
-        }
-
-        $blogs =   $blogs->orderBy($sort_by, $sort_type)->paginate(2);
+        })->orderBy($sort_by, $sort_type)->paginate(3);
         return $blogs;
     }
+
+
 
     //For Blog View Count
     public static function blogViewed($request, $blog)
@@ -99,5 +91,15 @@ class BlogHelpers extends Helpers
                 $request->session()->push('viewed_post', $blog->id);
             }
         }
+    }
+
+    //for save a image in temp folder
+    public static function saveTempImages($request)
+    {
+        $data = $request->all();
+        $myImage = time() . '.' . $data['file']->extension();
+        $request->file->move(public_path('temp-blog-images/'), $myImage);
+        $url  = url('/temp-blog-images/' . $myImage);
+        return $url;
     }
 }

@@ -197,13 +197,9 @@ class CategoryController extends Controller
      */
     public function categorySlugCheck(Request $request)
     {
-        // $request->validate([
-        //     'slug' => "required|max:200|unique:blogs|$request->id",
-        // ]);
-
         try {
             $request->validate([
-                'slug' => 'required|max:200|unique:blogs',
+                'slug' => 'required|max:200',
             ]);
 
             $slug = Str::slug($request->input('slug'));
@@ -212,17 +208,14 @@ class CategoryController extends Controller
             if ($request->id) {
                 $data = $data->where('id', '!=', $request->id);
             }
-
             $data = $data->get();
 
             if (count($data) > 0) {
-                // return false;
                 return response()->json(['success' => false,  'message' => 'Slug is Already Taken !!',]);
             }
-            // return true;
             return response()->json(['success' => true, 'message' => ' Slug is Available', 'slug' => $slug]);
         } catch (\Throwable $th) {
-            // throw $th;
+            return redirect()->back()->with('error', 'something went wrong');
         }
     }
 }
