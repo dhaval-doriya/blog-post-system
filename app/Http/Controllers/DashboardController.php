@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use BlogHelpers;
+use Helpers;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -15,10 +17,10 @@ class DashboardController extends Controller
     {
         if (auth()->user()->role == 'admin') {
             $blogs = Blog::where('status', 0)->paginate(2);
-            $statistics = getStatistics();
+            $statistics = Helpers::getStatistics();
 
             if ($request->ajax()) {
-                $blogs = getBlogs($request);
+                $blogs = BlogHelpers::getBlogs($request);
                 return view('backend.layout.admintable', compact('blogs'));
             }
 
@@ -31,7 +33,7 @@ class DashboardController extends Controller
         $statistics['views'] = $blogs->sum('views');
 
         if ($request->ajax()) {
-            $blogs = getBlogs($request);
+            $blogs = BlogHelpers::getBlogs($request);
             return view('backend.blog.table', compact('blogs'));
         }
         $blogs = $blogs->where('status', 0)->paginate(2);

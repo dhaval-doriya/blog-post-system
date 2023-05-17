@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\Helper as HelpersHelper;
 use App\Http\Requests\StoreBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
 use App\Models\Blog;
 use App\Models\BlogImage;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use PhpParser\Node\Expr\Throw_;
+use BlogHelpers as BlogHelper;
+use Helpers;
+
 class BlogController extends Controller
 {
     /**
@@ -75,16 +75,16 @@ class BlogController extends Controller
     {
         try {
             $data = $request->all();
-            $data['image'] =  saveOneImage('blog-cover-images', $request->image); //blog-cover-images
+            $data['image'] =  Helpers::saveOneImage('blog-cover-images', $request->image); //blog-cover-images
             $data['user_id'] = auth()->user()->id;
 
-            $result = descriptionCheckImage($data['description']); //this function return array of images and html for description
+            $result = BlogHelper::descriptionCheckImage($data['description']); //this function return array of images and html for description
 
             $data['description'] =  $result['description'];
             $blog =  Blog::create($data);
             $blog->category()->attach($request->input('categories'));
 
-            $result = moveImages($result['ImgNames'], $blog->id);  //Move Images to Blog-post-image folder
+            $result = BlogHelper::moveImages($result['ImgNames'], $blog->id);  //Move Images to Blog-post-image folder
 
             if ($blog) {
                 return redirect()->route('blog.index')->with(['message' => 'Blog Created Successfully']);
@@ -92,7 +92,7 @@ class BlogController extends Controller
                 return redirect()->route('blog.index')->with('error', "Can't Create Blog Now ");
             }
         } catch (\Throwable $th) {
-            return redirect()->route('blog.index')->with('error', ' ');
+            return redirect()->route('blog.index')->with('error', 'something went wrong please try again');
         }
     }
 
@@ -154,7 +154,7 @@ class BlogController extends Controller
             }
 
             $data = $request->all();
-            $result = descriptionCheckImage($data['description']); //this function return array of images and html for description
+            $result = BlogHelper::descriptionCheckImage($data['description']); //this function return array of images and html for description
             $data['slug'] =  Str::slug($data['slug']);
             $data['description'] =  $result['description'];
             $blog->category()->sync($data['categories']);
@@ -165,16 +165,16 @@ class BlogController extends Controller
 
             //Add image from db and storage
             $add_image = array_diff($selected_images, $images); //add to db
-            moveImages($add_image, $blog->id);  //Move Images to Blog-post-image folder
+            BlogHelper::moveImages($add_image, $blog->id);  //Move Images to Blog-post-image folder
 
             //remove image from db and storage
             $remove_image =  array_diff($images, $selected_images); //remove from db
-            deleteImages($remove_image, $blog->id);  //Move Images to Blog-post-image folder
+            BlogHelper::deleteImages($remove_image, $blog->id);  //Move Images to Blog-post-image folder
             $query->whereIn('image', $remove_image)->delete();
 
             if ($request->image) {
-                deleteOneImage('blog-cover-images', $blog->image); //blog-cover-images
-                $data['image'] =  saveOneImage('blog-cover-images', $request->image); //blog-cover-images
+                Helpers::deleteOneImage('blog-cover-images', $blog->image); //blog-cover-images
+                $data['image'] =  Helpers::saveOneImage('blog-cover-images', $request->image); //blog-cover-images
             }
 
             $result =  $blog->update($data);
@@ -206,12 +206,12 @@ class BlogController extends Controller
                 //Get a Images of Description and Delete it
                 $blogImages = BlogImage::where('blog_id', $blog->id);
                 $images = $blogImages->pluck('image')->toArray();
-                deleteImages($images, $blog->id);  //Delete Images to Blog-post-image folder
+                BlogHelper::deleteImages($images, $blog->id);  //Delete Images to Blog-post-image folder
                 $blogImages->whereIn('image', $images)->delete();
 
                 $blog->category()->detach(); //delete Records of Blog From Bridge table
 
-                deleteOneImage('blog-cover-images', $blog->image); //blog-cover-images
+                Helpers::deleteOneImage('blog-cover-images', $blog->image); //blog-cover-images
 
                 $delete = $blog->delete();
                 if ($delete && $request->ajax()) {

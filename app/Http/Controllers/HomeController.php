@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\User;
+use BlogHelpers;
+use Helpers;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -18,7 +20,7 @@ class HomeController extends Controller
     public function blogs(Request $request)
     {
         $blogs = Blog::where('status', 1)->Paginate(3);
-        $response = homepageData();
+        $response = Helpers::homepageData();
 
         $query  = $request->get('search');
 
@@ -43,8 +45,8 @@ class HomeController extends Controller
     public function blog(Request $request, $slug)
     {
         $blog = Blog::where('slug', $slug)->firstorfail();
-        blogViewed($request, $blog);
-        $response = homepageData();
+        BlogHelpers::blogViewed($request, $blog);
+        $response = Helpers::homepageData();
         $response['blog'] = $blog;
         return view('frontend.oneblog',  $response);
     }
@@ -57,7 +59,7 @@ class HomeController extends Controller
     public function category(Request $request, $slug)
     {
         $cat = Category::where('slug', $slug)->firstorfail();
-        $response = homepageData();
+        $response = Helpers::homepageData();
         $response['blogs'] = $cat->blog()->Paginate(3);
         $response['message'] = "Category : $cat->name ";
 
@@ -78,7 +80,7 @@ class HomeController extends Controller
     public function blogsByUser(Request $request, $id)
     {
         $user = User::where('id', $id)->firstorfail();
-        $response = homepageData();
+        $response =Helpers::homepageData();
         $response['blogs'] = $user->blogs()->Paginate(3);
         $response['message'] = "All the Blogs by $user->name ";
 

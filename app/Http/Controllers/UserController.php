@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
+use UserHelpers;
 
 class UserController extends Controller
 {
@@ -120,7 +121,7 @@ class UserController extends Controller
             if ($user->role === 'admin') {
                 return response()->json(['success' => false, 'message' => 'Admin Can`t be deleted!!']);
             }
-            deleteOneImage("profile-images", $user->profile_image);
+            UserHelpers::deleteOneImage("profile-images", $user->profile_image);
             $deleted = $user->delete();
             if ($deleted) {
                 if ($request->ajax()) {
@@ -213,10 +214,10 @@ class UserController extends Controller
             return redirect()->route('dashboard')->with('error', "Can't find a User");
         }
 
-        $file_name =  saveProfilePic($user, $data['image']);
+        $file_name =  UserHelpers::saveProfilePic($user, $data['image']);
 
         if ($user->profile_image) {
-            deleteOneImage("profile-images", $user->profile_image);
+            UserHelpers::deleteOneImage("profile-images", $user->profile_image);
         }
 
         if ($file_name) {
@@ -243,7 +244,7 @@ class UserController extends Controller
         }
 
         if ($user->profile_image) {
-            deleteOneImage("profile-images", $user->profile_image);
+            UserHelpers::deleteOneImage("profile-images", $user->profile_image);
             $user->profile_image = '';
             $result = $user->save();
 
