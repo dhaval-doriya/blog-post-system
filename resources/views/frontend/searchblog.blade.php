@@ -5,7 +5,6 @@
 
 @endsection
 @section('mainblogs')
-
     <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
         <div class="page-wrapper">
             <h1 class="text">
@@ -33,8 +32,5 @@
                     @endif
             </div>
         </div>
-
-
     </div>
-
 @endsection

@@ -3,7 +3,7 @@ var page = 1;
 let dataLoaded = true
 
 $(window).on('scroll', () => {
-    if ($(window).scrollTop() + $(window).height() >= ($(document).height() - 15) && dataLoaded) {
+    if ($(window).scrollTop() + $(window).height() >= ($(document).height() - 15)) {
         page++;
         loadBlogs(page);
     }
@@ -20,7 +20,7 @@ function loadBlogs(page) {
             $('.auto-load').show();
         },
         success: function (results) {
-            if (results === '') {
+            if (results.length <= 1) {
                 $('.auto-load').html("<h1> We don't have more blogs to display :( </h1> <br><button onclick='topFunction()' id='myBtn' title='Go to top'>Scroll Top</button>");
                 dataLoaded = false;
                 return;
@@ -28,8 +28,6 @@ function loadBlogs(page) {
             $('.auto-load').hide();
             $('#blog-list').append(results);
             dataLoaded = true;
-
-
         },
 
         error: function (response) {
