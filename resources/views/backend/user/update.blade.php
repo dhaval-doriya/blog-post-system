@@ -139,6 +139,9 @@
 
 @endsection
 @section('links')
+{!! JsValidator::formRequest('App\Http\Requests\UpdateUserRequest', '#user-edit'); !!}
+
+
     <script src="{{ asset('assets/custom_js/uploadProfile.js') }}"></script>
     <script src="{{ asset('assets/custom_js/validate/user.js') }}"></script>
 

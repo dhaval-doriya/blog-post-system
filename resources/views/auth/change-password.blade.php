@@ -65,7 +65,8 @@
 
 @endsection
 @section('links')
+
+    {!! JsValidator::formRequest('App\Http\Requests\UpdatePasswordRequest', '#change-password') !!}
+
     <script src="{{ asset('assets/custom_js/validate/userAuthenticate.js') }}"></script>
-
-
 @endsection

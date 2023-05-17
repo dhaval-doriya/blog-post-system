@@ -18,19 +18,13 @@
           <div class="card-body">
             <div class="form-group">
               <label for="name">category title</label>
-              <input required type="text" class="form-control" placeholder="Enter Category name" name="name" id="name">
-              @if($errors->has('name'))
-              <div class="error text-danger">{{ $errors->first('name') }}</div>
-              @endif
+              <input  type="text" class="form-control" placeholder="Enter Category name" name="name" id="name">
             </div>
             <div class="form-group">
               <label for="title">category slug</label>
-              <input required type="text" class="form-control " placeholder="Enter category slug" name="slug" id="slug" data-action="{{route('category.slug')}}" content="{{ csrf_token() }}">
+              <input  type="text" class="form-control " placeholder="Enter category slug" name="slug" id="slug" data-action="{{route('category.slug')}}" content="{{ csrf_token() }}">
               <p class="error-slug text-danger"></p>
               <p class="success-slug text-success"></p>
-              @if($errors->has('slug'))
-              <div class="error text-danger">{{ $errors->first('slug') }}</div>
-              @endif
             </div>
           </div>
           <div class="card-footer">
@@ -44,8 +38,11 @@
 
 </div>
 
+
 @endsection
 
 @section('links')
+{!! JsValidator::formRequest('App\Http\Requests\StoreCategoryRequest', '#category-create'); !!}
+
     <script src="{{ asset('assets/custom_js/validate/category.js') }}"></script>
 @endsection

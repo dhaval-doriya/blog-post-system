@@ -43,14 +43,19 @@
                 <h4 class="small-title">About author</h4>
                 <div class="row">
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-                        @if ($blog->user->profile_image)
-                            <img src="{{ asset('profile-images/' . $blog->user->profile_image) }}"
-                                class="img-fluid rounded-circle" />
-                        @else
+                        <a href="{{ route('blog.user', ['id' => $blog->user->id]) }}">
 
-                        {{-- <img src="{{ asset('profile-images/' . $blog->user->profile_image) }}"
-                        class="img-fluid rounded-circle" /> --}}
-                        @endif
+                            @if ($blog->user->profile_image)
+                                <img src="{{ asset('profile-images/' . $blog->user->profile_image) }}"
+                                    class="img-fluid rounded-circle" />
+                            @else
+                                <img src="{{ asset('assets/dashboard/dist/img/user2-160x160.jpg') }}"
+                                    class="img-fluid rounded-circle" />
+
+                                {{-- <img src="{{ asset('profile-images/' . $blog->user->profile_image) }}"
+                    class="img-fluid rounded-circle" /> --}}
+                            @endif
+                        </a>
                     </div><!-- end col -->
 
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">

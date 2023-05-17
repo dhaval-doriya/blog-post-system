@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Blog;
-use App\Models\BlogImage;
 use App\Models\Category;
 use App\Models\User;
 
@@ -31,10 +30,16 @@ class Helpers
     // Get Statistics for dashboard
     public static function getStatistics()
     {
-        $statistics = [];
-        $statistics['totalblogs'] = Blog::count();
-        $statistics['totalusers'] = User::where('role', 'user')->count();
-        $statistics['totalcategories'] = Category::count();
+
+        if (auth()->user()->role === 'admin') {
+            $statistics['totalPendingBlogs'] = Blog::where('status', '0')->count();
+            $statistics['totalBlogs'] = Blog::count();
+            $statistics['totalUsers'] = User::where('role', 'user')->count();
+            $statistics['totalCategories'] = Category::count();
+        }else{
+
+
+        }
 
         return $statistics;
     }

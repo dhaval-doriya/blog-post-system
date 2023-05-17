@@ -17,7 +17,7 @@
                     <div class="card-header">
                         <h3 class="card-title">User </h3><br>
                     </div>
-                    <form action="{{ route('user.store') }}" method="post" id="storeUser">
+                    <form action="{{ route('user.store') }}" method="post" id="user-create">
                         @csrf
 
                         <div class="card-body">
@@ -42,10 +42,8 @@
 
                             <div class="form-group">
                                 <label for="title">phone</label>
-
-
-                                <input type="tel" class="form-control" placeholder="Enter phone number"
-                                    name="phone" id="phone">
+                                <input type="tel" class="form-control" placeholder="Enter phone number" name="phone"
+                                    id="phone">
                                 @if ($errors->has('phone'))
                                     <div class="error text-danger">{{ $errors->first('phone') }}</div>
                                 @endif
@@ -63,19 +61,9 @@
     <script></script>
 @endsection
 @section('links')
-    <script>
-        $(document).ready(function() {
-            var input = document.querySelector("#phone");
-            window.intlTelInput(input, {
-                initialCountry: "In", //change according to your own country.
-                preferredCountries: ["in"],
-                separateDialCode: true,
-                utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
-            });
 
-        });
+    {!! JsValidator::formRequest('App\Http\Requests\StoreUserRequest', '#user-create') !!}
 
-    </script>
     <script src="{{ asset('assets/custom_js/validate/user.js') }}"></script>
 
 @endsection

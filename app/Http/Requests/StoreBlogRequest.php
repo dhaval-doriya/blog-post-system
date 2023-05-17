@@ -28,8 +28,8 @@ class StoreBlogRequest extends FormRequest
             'name' => 'required|max:200',
             'slug' => "required|max:200|unique:blogs",
             'short_description'  => 'required|max:200',
-            'description' => 'required|max:65000',
             'image' => 'required|mimes:png,jpg,jpeg|max:2048',
+            'description' => 'required|max:65000',
         ];
     }
 }

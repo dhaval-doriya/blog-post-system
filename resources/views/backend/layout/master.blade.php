@@ -44,6 +44,7 @@
                 @yield('maindata')
             </section>
         </div>
+
         @include('backend.layout.footer')
     </div>
 </body>

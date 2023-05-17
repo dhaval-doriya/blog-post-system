@@ -17,3 +17,5 @@ yarn-error.log
 /public/blog-post-images
 /public/profile-images
 /public/temp-blog-images
+/resources/views/vendor/
+/public/vendor/

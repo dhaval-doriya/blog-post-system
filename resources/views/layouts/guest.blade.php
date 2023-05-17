@@ -11,24 +11,18 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
-    <!-- Styles -->
-    <script src="{{ asset('assets/dashboard/plugins/jquery/jquery.min.js') }}"></script>
-    <!-- jquery validtion cdn  -->
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 
-    <script src="{{ asset('assets/custom_js/validate/customValidate.js') }}"></script>
 
-    <script src="{{ asset('assets/custom_js/validate/userAuthenticate.js') }}"></script>
+    <style>
+        .invalid-feedback {
+            color: rgb(240, 60, 60);
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: normal;
 
-<style>
-    .error {
-    color: rgb(240, 60, 60);
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: normal;
+        }
 
-  };
-</style>
+        ;
+    </style>
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
@@ -41,5 +35,22 @@
         {{ $slot }}
     </div>
 </body>
+<!-- Styles -->
+<script src="{{ asset('assets/dashboard/plugins/jquery/jquery.min.js') }}"></script>
+<!-- jquery validtion cdn  -->
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
+
+
+{{-- <script src="{{ asset('assets/custom_js/validate/customValidate.js') }}"></script>
+<script src="{{ asset('assets/custom_js/validate/userAuthenticate.js') }}"></script> --}}
+
+
+{{-- validate --}}
+
+{!! JsValidator::formRequest('App\Http\Requests\RegisterRequest', '#registerUser') !!}
+{!! JsValidator::formRequest('App\Http\Requests\Auth\LoginRequest', '#login') !!}
+
 
 </html>

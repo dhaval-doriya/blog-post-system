@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreBlogImageRequest extends FormRequest
+class UpdatePasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StoreBlogImageRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class StoreBlogImageRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'old_password' => 'required|min:8|max:256',
+            'password' => 'required|min:8|max:256',
+            'confirm_password' => 'required|same:password|min:8|max:256'
         ];
     }
 }

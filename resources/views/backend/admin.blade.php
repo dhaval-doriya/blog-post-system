@@ -13,7 +13,7 @@
         <div class="col-lg-3 col-6 ">
             <div class="small-box bg-info shadow-lg rounded p-3">
                 <div class="inner">
-                    <h3>{{ count($blogs) }}</h3>
+                    <h3> {{ $statistics['totalPendingBlogs'] ?? '3' }} </h3>
 
                     <p>Pending Blogs</p>
                 </div>
@@ -42,7 +42,7 @@
         <div class="col-lg-3 col-6 ">
             <div class="small-box bg-warning shadow-lg rounded p-3">
                 <div class="inner">
-                    <h3>{{ $statistics['totalusers'] ?? 3 }}</h3>
+                    <h3>{{ $statistics['totalUsers'] ?? 3 }}</h3>
                     <p>Total User </p>
                 </div>
                 <div class="icon">
@@ -55,7 +55,7 @@
         <div class="col-lg-3 col-6 ">
             <div class="small-box bg-danger shadow-lg rounded p-3">
                 <div class="inner">
-                    <h3>{{ $statistics['totalcategories'] ?? '4' }}</h3>
+                    <h3>{{ $statistics['totalCategories'] ?? '4' }}</h3>
                     <p>Total categories</p>
                 </div>
                 <div class="icon">

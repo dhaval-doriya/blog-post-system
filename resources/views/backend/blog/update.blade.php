@@ -21,21 +21,22 @@
                         @csrf
                         @method('PUT')
                         <div class="card-body">
+                            <input hidden value="{{ $blog->id}}" name="id">
 
                             <div class="form-group">
                                 <label for="name">Blog name</label>
-                                @if ($errors->has('name'))
+                                {{-- @if ($errors->has('name'))
                                     <div class="error text-danger">{{ $errors->first('name') }}</div>
-                                @endif
+                                @endif --}}
                                 <input type="name" class="form-control" placeholder="Enter blog name"
                                     value="{{ $blog->name }}" name="name" id="name">
                             </div>
 
                             <div class="form-group">
                                 <label for="slug"> blog title slug</label>
-                                @if ($errors->has('slug'))
+                                {{-- @if ($errors->has('slug'))
                                     <div class="error text-danger">{{ $errors->first('slug') }}</div>
-                                @endif
+                                @endif --}}
                                 <input type="name" class="form-control " value="{{ $blog->slug }}"
                                     placeholder="Enter blog slug" name="slug" id="slug"
                                     data-id="{{ $blog->id }}" data-action="{{ route('blog.slug') }}"
@@ -46,18 +47,18 @@
 
                             <div class="col-md-12">
                                 <label for="short_description"> blog Short Description</label>
-                                @if ($errors->has('short_description'))
+                                {{-- @if ($errors->has('short_description'))
                                     <div class="error text-danger">{{ $errors->first('short_description') }}</div>
-                                @endif
+                                @endif --}}
                                 <input class="form-control" value="{{ $blog->short_description }}"
                                     name="short_description" />
                             </div>
 
                             <div class="form-group mb-3">
                                 <label for="select2Multiple">Select Multiple categories</label>
-                                @if ($errors->has('categories'))
+                                {{-- @if ($errors->has('categories'))
                                     <div class="error text-danger">{{ $errors->first('categories') }}</div>
-                                @endif
+                                @endif --}}
                                 <select required class="select2-multiple form-control" name="categories[]"
                                     multiple="multiple" id="select2Multiple">
                                     @foreach ($categories as $cat)
@@ -76,9 +77,9 @@
                                     <input type="file" accept="image/png, image/gif, image/jpeg" name="image"
                                         id="fileToUpload" onchange="readURL(this);">
                                     <br>
-                                    @if ($errors->has('image'))
+                                    {{-- @if ($errors->has('image'))
                                         <div class="error text-danger">{{ $errors->first('image') }}</div>
-                                    @endif
+                                    @endif --}}
                                 </div>
 
                                 <div class="image d-flex justify-content-center mb-3 mt-3 ml-5">
@@ -121,7 +122,9 @@
 
 @section('links')
 
-    <script src="{{ asset('assets/custom_js/descriptionImageUpload.js') }}"></script>
-    <script src="{{ asset('assets/custom_js/validate/blog.js') }}"></script>
+{!! JsValidator::formRequest('App\Http\Requests\UpdateBlogRequest', '#blog-update') !!}
 
+<script src="{{ asset('assets/custom_js/validate/blog.js') }}"></script>
+
+<script src="{{ asset('assets/custom_js/descriptionImageUpload.js') }}"></script>
 @endsection

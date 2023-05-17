@@ -1,7 +1,7 @@
 
 //validtion for change password page
 $(document).ready(function () {
-    $("#storeUser").validate({
+    $("#user-create").validate({
         rules: {
             name: {
                 required: true,

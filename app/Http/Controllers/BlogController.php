@@ -84,7 +84,6 @@ class BlogController extends Controller
 
     /**
      * Display the specified resource.
-     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -135,7 +134,6 @@ class BlogController extends Controller
             if (!$blog) {
                 return redirect()->route('blog.index')->with('error', 'Can`t Find Blog ');
             }
-
             //check for authorization of blog
             if (auth()->user()->role !== 'admin' && auth()->user()->id !== $blog->user_id) {
                 return redirect()->route('blog.index')->with('error', 'unauthorized.');

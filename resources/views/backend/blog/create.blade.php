@@ -111,8 +111,10 @@
 @endsection
 
 @section('links')
+    {{-- validation  --}}
+    {!! JsValidator::formRequest('App\Http\Requests\StoreBlogRequest', '#blog-create') !!}
 
-    <script src="{{ asset('assets/custom_js/descriptionImageUpload.js') }}"></script>
     <script src="{{ asset('assets/custom_js/validate/blog.js') }}"></script>
 
+    <script src="{{ asset('assets/custom_js/descriptionImageUpload.js') }}"></script>
 @endsection

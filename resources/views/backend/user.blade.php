@@ -13,7 +13,7 @@
                 <!-- small box -->
                 <div class="small-box bg-info shadow-lg rounded p-3">
                     <div class="inner">
-                        <h3>{{ count($blogs) }}</h3>
+                        <h3> {{ $statistics['totalPendingBlogs'] ?? '3' }} </h3>
                         <p>Total Pending blogs</p>
                     </div>
                     <div class="icon">
@@ -27,7 +27,7 @@
                 <!-- small box -->
                 <div class="small-box bg-success shadow-lg rounded p-3">
                     <div class="inner">
-                        <h3>{{ $statistics['totalblogs'] }}</h3>
+                        <h3>{{ $statistics['totalBlogs'] }}</h3>
                         <p>Total Blogs</p>
                     </div>
                     <div class="icon">
@@ -56,7 +56,7 @@
                 <div class="small-box bg-danger  shadow-lg rounded p-3">
                     <div class="inner">
                         <h3>0</h3>
-                        <p>Visitors</p>
+                        <p>0</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-pie-graph"></i>

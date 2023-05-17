@@ -180,15 +180,9 @@ class UserController extends Controller
      * [updatePassword PUT  updateUser]
      * @return [View] [Returns UpdatePassword]
      */
-    public function updatePassword(Request $request, $id)
+    public function updatePassword(UpdateUserRequest $request, $id)
     {
         try {
-            $request->validate(
-                [
-                    'old_password' => 'required|min:8|max:256',
-                    'confirm_password' => 'required|same:password|min:8|max:256'
-                ]
-            );
             if (Hash::check($request->input('old_password'), Auth::user()->password)) {
                 User::where('id', $id)->update(['password' =>  Hash::make($request['password'])]);
                 return redirect()->route('dashboard')->with(['message' => 'Password updated Successfully']);

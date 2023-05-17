@@ -57,7 +57,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
 
-
+<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 
 <script src="{{ asset('assets/custom_js/validate/customValidate.js') }}"></script>
 

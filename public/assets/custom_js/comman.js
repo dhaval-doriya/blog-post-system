@@ -173,15 +173,15 @@ $(document).ready(function () {
     })
 
 
-    $("#slug").click(function (e) {
-        e.preventDefault();
-        checkSlug()
-    });
+    // $("#slug").click(function (e) {
+    //     e.preventDefault();
+    //     checkSlug()
+    // });
 
-    $("#slug").change(function (e) {
-        e.preventDefault();
-        checkSlug()
-    });
+    // $("#slug").change(function (e) {
+    //     e.preventDefault();
+    //     checkSlug()
+    // });
 
     function convertToSlug(Text) {
         var $slug = '';
@@ -192,7 +192,7 @@ $(document).ready(function () {
         return $slug.toLowerCase();
     }
 
-
+    //check slug ajax request
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -240,7 +240,6 @@ $(document).ready(function () {
 
     //load table data ajax
     function loadData() {
-
         if (window.location.hash) {
             var page = window.location.hash.replace('#', '');
             if (page == Number.NaN || page <= 0) {

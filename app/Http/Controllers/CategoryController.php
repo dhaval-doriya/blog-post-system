@@ -128,20 +128,15 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, $id)
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('dashboard')->with('error', 'unauthorized');
+        }
         try {
-            if (auth()->user()->role == 'admin') {
-                $category = Category::find($id)->firstorfail();
-                $data = $request->all();
-                $data['slug'] = Str::slug($data['slug']);
-                $cat =  $category->update($data);
-
-                if ($cat) {
-                    return redirect()->route('category.index')->with('success', 'Category Created Successfully');
-                } else {
-                    return redirect()->route('category.index')->with('error', 'Can`t Create Category Now ');
-                }
-            }
-            return redirect()->route('dashboard')->with('error', 'something went wrong');
+            $category = Category::find($id)->firstorfail();
+            $data = $request->all();
+            $data['slug'] = Str::slug($data['slug']);
+            $category =  $category->update($data);
+            return redirect()->route('category.index')->with('success', 'Category Created Successfully');
         } catch (\Throwable $th) {
             return redirect()->route('dashboard')->with('error', 'something went wrong');
         }

@@ -45,6 +45,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.5.1/sweetalert2.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.5.1/sweetalert2.all.min.js"></script>
 
+
 <link href="{{ asset('assets/custom_css/socialmedia.css') }}" rel="stylesheet">
 
 
@@ -152,7 +153,7 @@
 
                                         <div class="form-group">
                                             <input id="search" type="text" class="form-control"
-                                                placeholder="Search Blog " name="search">
+                                                placeholder="Search Blog " name="search" required>
                                         </div>
                                         <!-- <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button> -->
                                     </form>
@@ -213,6 +214,8 @@
         <script src="{{ asset('assets/frontside/js/custom.js') }}"></script>
         <script src="{{ asset('assets/custom_js/frontend/logout.js') }}"></script>
         <script src="https://kit.fontawesome.com/704ff50790.js" crossorigin="anonymous"></script>
+        {{-- jquery validator  --}}
+        <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
 
         <script src="{{ asset('assets/custom_js/frontend/infiniteLoadBlog.js') }}"></script>
 </body>
