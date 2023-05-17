@@ -5,8 +5,6 @@ use Illuminate\Support\Facades\Storage;
 
 class BlogHelpers extends Helpers
 {
-
-
     //upload images of blog
     public static function descriptionCheckImage($data)
     {

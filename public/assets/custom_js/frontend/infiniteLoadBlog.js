@@ -3,7 +3,7 @@ var page = 1;
 let dataLoaded = true
 
 $(window).on('scroll', () => {
-    if ($(window).scrollTop() + $(window).height() >= ($(document).height() - 15)) {
+    if ($(window).scrollTop() + $(window).height() >= ($(document).height() - 15) && dataLoaded) {
         page++;
         loadBlogs(page);
     }

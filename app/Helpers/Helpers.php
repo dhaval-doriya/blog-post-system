@@ -65,6 +65,6 @@ class Helpers
 
         $popular = array_slice($popular, 0, 5);
 
-        return  ['recentblogs' => $recentBlogs, 'categories' => $categories, 'popularCategories' => $popular];
+        return  ['recentBlogs' => $recentBlogs, 'categories' => $categories, 'popularCategories' => $popular];
     }
 }

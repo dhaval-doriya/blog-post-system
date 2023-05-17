@@ -160,12 +160,12 @@
                                 </div>
 
 
-                                @if (count($recentblogs) > 0)
+                                @if (count($recentBlogs) > 0)
                                     <div class="widget">
                                         <h2 class="widget-title">Recent Posts</h2>
                                         <div class="blog-list-widget">
                                             <div class="list-group">
-                                                @foreach ($recentblogs as $blog)
+                                                @foreach ($recentBlogs as $blog)
                                                     <a href=" {{ route('blog.one', ['slug' => $blog->slug]) }}"
                                                         class="list-group-item list-group-item-action flex-column align-items-start">
                                                         <div class="w-100 justify-content-between">

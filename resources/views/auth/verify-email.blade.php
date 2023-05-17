@@ -27,12 +27,13 @@
                 </div>
             </form>
 
-            <form method="POST" action="{{ route('logout') }}">
+            <form method="POST" action="{{ route('user.logout') }}">
                 @csrf
 
-                <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900">
+                <button type="submit">logout</button>
+                {{-- <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900">
                     {{ __('Log Out') }}
-                </button>
+                </button> --}}
             </form>
         </div>
     </x-auth-card>

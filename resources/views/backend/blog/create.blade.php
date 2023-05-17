@@ -111,7 +111,6 @@
 @endsection
 
 @section('links')
-    {{-- validation  --}}
     {!! JsValidator::formRequest('App\Http\Requests\StoreBlogRequest', '#blog-create') !!}
 
     <script src="{{ asset('assets/custom_js/validate/blog.js') }}"></script>

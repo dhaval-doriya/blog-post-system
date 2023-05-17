@@ -4,29 +4,29 @@
 @section('title', 'Homepage')
 @section('topblogs')
     <section class="section first-section">
-        @if (count($recentblogs) == 3)
+        @if (count($recentBlogs) == 3)
             <div class="container-fluid">
                 <div class="masonry-blog clearfix">
                     <div class="left-side">
                         <div class="masonry-box post-media">
-                            <img src="{{ asset('blog-cover-images/' . $recentblogs[1]->image) }}" alt=""
+                            <img src="{{ asset('blog-cover-images/' . $recentBlogs[1]->image) }}" alt=""
                                 height="450px">
                             <div class="shadoweffect">
                                 <div class="shadow-desc">
                                     <div class="blog-meta">
-                                        @forelse($recentblogs[1]->category as $cat)
+                                        @forelse($recentBlogs[1]->category as $cat)
                                             <span class="bg-aqua"><a
                                                     href="{{ route('category.all', ['slug' => $cat->slug]) }}"
                                                     title="">{{ $cat->name }}</a></span>
                                         @endforeach
 
-                                        <h4><a href="{{ route('blog.one', ['slug' => $recentblogs[1]->slug]) }}"
-                                                title="">{{ $recentblogs[1]->name }}</a></h4>
+                                        <h4><a href="{{ route('blog.one', ['slug' => $recentBlogs[1]->slug]) }}"
+                                                title="">{{ $recentBlogs[1]->name }}</a></h4>
                                         <small><a
                                                 href="{{ route('blog.one', ['slug' => $blogs[count($blogs) - 1]->slug]) }}"
-                                                title="">{{ $recentblogs[1]->created_at->format('dS F Y') }}</a></small>
+                                                title="">{{ $recentBlogs[1]->created_at->format('dS F Y') }}</a></small>
                                         <small><a href="#" title="">By
-                                                {{ $recentblogs[1]->user->name }}</a></small>
+                                                {{ $recentBlogs[1]->user->name }}</a></small>
                                     </div><!-- end meta -->
                                 </div><!-- end shadow-desc -->
                             </div>
@@ -34,23 +34,23 @@
                     </div>
                     <div class="center-side ">
                         <div class="masonry-box post-media">
-                            <img src="{{ asset('blog-cover-images/' . $recentblogs[2]->image) }}" alt=""
+                            <img src="{{ asset('blog-cover-images/' . $recentBlogs[2]->image) }}" alt=""
                                 height="450px">
                             <div class="shadoweffect">
                                 <div class="shadow-desc">
                                     <div class="blog-meta">
-                                        @forelse($recentblogs[2]->category as $cat)
+                                        @forelse($recentBlogs[2]->category as $cat)
                                             <span class="bg-aqua"><a
                                                     href="{{ route('category.all', ['slug' => $cat->slug]) }}"
                                                     title="">{{ $cat->name }}</a></span>
 
                                         @endforeach
-                                        <h4><a href="{{ route('blog.one', ['slug' => $recentblogs[2]->slug]) }}"
-                                                title="">{{ $recentblogs[2]->name }}</a></h4>
-                                        <small><a href="{{ route('blog.one', ['slug' => $recentblogs[2]->slug]) }}"
-                                                title="">{{ $recentblogs[2]->created_at->format('dS F Y') }}</a></small>
+                                        <h4><a href="{{ route('blog.one', ['slug' => $recentBlogs[2]->slug]) }}"
+                                                title="">{{ $recentBlogs[2]->name }}</a></h4>
+                                        <small><a href="{{ route('blog.one', ['slug' => $recentBlogs[2]->slug]) }}"
+                                                title="">{{ $recentBlogs[2]->created_at->format('dS F Y') }}</a></small>
                                         <small><a href="#" title=""> By
-                                                {{ $recentblogs[2]->user->name }}</a></small>
+                                                {{ $recentBlogs[2]->user->name }}</a></small>
                                     </div>
                                 </div>
                             </div>
@@ -59,22 +59,22 @@
 
                     <div class="right-side hidden-md-down">
                         <div class="masonry-box post-media ">
-                            <img src="{{ asset('blog-cover-images/' . $recentblogs[0]->image) }}" alt=""
+                            <img src="{{ asset('blog-cover-images/' . $recentBlogs[0]->image) }}" alt=""
                                 height="450px">
                             <div class="shadoweffect">
                                 <div class="shadow-desc">
                                     <div class="blog-meta">
-                                        @forelse($recentblogs[0]->category as $cat)
+                                        @forelse($recentBlogs[0]->category as $cat)
                                             <span class="bg-aqua"><a
                                                     href="{{ route('category.all', ['slug' => $cat->slug]) }}"
                                                     title="">{{ $cat->name }}</a></span>
                                         @endforeach
-                                        <h4><a href="{{ route('blog.one', ['slug' => $recentblogs[0]->slug]) }}"
-                                                title="">{{ $recentblogs[0]->name }}</a></h4>
-                                        <small><a href="{{ route('blog.one', ['slug' => $recentblogs[0]->slug]) }}"
-                                                title="">{{ $recentblogs[0]->created_at->format('dS F Y') }}</a></small>
+                                        <h4><a href="{{ route('blog.one', ['slug' => $recentBlogs[0]->slug]) }}"
+                                                title="">{{ $recentBlogs[0]->name }}</a></h4>
+                                        <small><a href="{{ route('blog.one', ['slug' => $recentBlogs[0]->slug]) }}"
+                                                title="">{{ $recentBlogs[0]->created_at->format('dS F Y') }}</a></small>
                                         <small><a href="#" title="">By
-                                                {{ $recentblogs[0]->user->name }}</a></small>
+                                                {{ $recentBlogs[0]->user->name }}</a></small>
                                     </div>
                                 </div>
                             </div>

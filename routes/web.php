@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::check();
 require __DIR__ . '/auth.php';
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('user.logout');
 
 
 Route::get('/', function () {
@@ -18,10 +19,9 @@ Route::get('/', function () {
 });
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware([ 'verified' ,'auth' ])->group(function () {
     //dashboard routes
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('user.logout');
     Route::get('/change-password', [UserController::class, 'changePassword'])->name('password.change');
     Route::post('/change-password/{id}', [UserController::class, 'updatePassword'])->name('auth.password.change');
 
