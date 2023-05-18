@@ -91,12 +91,9 @@
                                 @endif
 
                                 <label for=" write Blog">Write Blog:</label>
-                                <div class="card-body ">
-                                    <textarea id="summernote" name="description" class="blog_description" data-action="{{ route('blog.description') }}"
-                                        content="{{ csrf_token() }}">
+                                <textarea id="summernote" name="description" class="blog_description" data-action="{{ route('blog.description') }}"
+                                    content="{{ csrf_token() }}">
                                          </textarea>
-
-                                </div>
                             </div>
                         </div>
                         <div class="card-footer text-right">

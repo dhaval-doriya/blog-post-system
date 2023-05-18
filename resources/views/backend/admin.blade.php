@@ -27,7 +27,7 @@
         <div class="col-lg-3 col-6 ">
             <div class="small-box bg-success shadow-lg rounded p-3">
                 <div class="inner">
-                    <h3>{{ $statistics['totalblogs'] ?? '3' }}
+                    <h3>{{ $statistics['totalBlogs'] ?? '3' }}
                     </h3>
 
                     <p>Total Blogs</p>

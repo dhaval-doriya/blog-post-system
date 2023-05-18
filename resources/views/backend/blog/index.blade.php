@@ -16,7 +16,7 @@
                         @if (Auth::user()->role == 'user')
                             <div>
                                 <a href="{{ route('blog.create') }}" class="nav-link ">
-                                    <button class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i>
+                                    <button class="btn btn-success"> <i class="fa fa-plus" aria-hidden="true"></i>
                                     </button>
                                 </a>
                             </div>

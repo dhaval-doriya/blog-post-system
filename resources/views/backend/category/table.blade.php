@@ -41,8 +41,6 @@
             </td>
         </tr>
     @endforeach
-
-
     <td colspan="5" align="center">
         {!! $categories->links() !!}
 

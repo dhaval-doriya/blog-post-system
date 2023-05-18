@@ -179,7 +179,7 @@ class CategoryController extends Controller
         $model->status == '1' ? $model->status = '0' : $model->status = '1';
         $model->save();
         if ($request->ajax()) {
-            return response()->json(['success' => true, 'message' => 'Status Change Successfully !!', 'data ' =>  $model->save()]);
+            return response()->json(['success' => true, 'message' => 'Status Change Successfully !!']);
         }
         return redirect()->back();
     }

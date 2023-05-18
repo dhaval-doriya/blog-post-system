@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 
-Route::middleware([ 'verified' ,'auth' ])->group(function () {
+Route::middleware(['auth'])->group(function () {
     //dashboard routes
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/change-password', [UserController::class, 'changePassword'])->name('password.change');
@@ -40,7 +40,7 @@ Route::middleware([ 'verified' ,'auth' ])->group(function () {
     });
 
     //category routes
-    Route::middleware('isAdmin')->group(function () {
+    Route::middleware(['isAdmin', 'verified'])->group(function () {
         //Update Status
         Route::patch('/blog/{id}', [BlogController::class, 'status'])->name('approve.blog');
         Route::patch('/category/{id}', [CategoryController::class, 'status'])->name('manage.category');

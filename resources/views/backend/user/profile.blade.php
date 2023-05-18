@@ -28,7 +28,6 @@
           @endif
         </div>
         <div class="card-footer">
-
           <div class="row">
             <div class="col-12 d-flex justify-content-center">
               <h3 class="widget-user-username text-right">{{$user->name}}</h3>
@@ -36,14 +35,12 @@
             <div class="col-12 d-flex justify-content-center">
               <h5 class="widget-user-desc text-right">{{$user->role}}</h5>
             </div>
-
             <div class="col-sm-4 border-right">
               <div class="description-block">
                 <h5 class="description-header">{{count($user->blogs)}}</h5>
                 <span class="description-text">Total blogs</span>
               </div>
             </div>
-            <!-- /.col -->
             <div class="col-sm-4 border-right">
               <div class="description-block">
                 <h5 class="description-header">

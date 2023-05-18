@@ -68,7 +68,9 @@
         {!! $blogs->links() !!}
     </td>
 @else
-
+<td colspan="8" align="center">
+    <h2 class="text-center">No Record Found</h2>
+</td>
 
     <script src="{{ asset('assets/custom_js/redirectTable.js') }}"></script>
 @endif

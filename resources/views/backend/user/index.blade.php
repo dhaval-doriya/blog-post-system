@@ -16,7 +16,7 @@
                 <div class="col-6 d-flex justify-content-end  ">
                     <div>
                         <a href="{{ route('user.create') }}" class="nav-link">
-                            <button type="button" class="ms-2 btn btn-primary"><i class="fa fa-plus" aria-hidden="true">
+                            <button type="button" class="ms-2 btn btn-success"><i class="fa fa-plus" aria-hidden="true">
                                 </i></button>
                         </a>
                     </div>
