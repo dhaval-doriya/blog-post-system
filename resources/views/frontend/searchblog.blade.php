@@ -1,11 +1,12 @@
-@extends('frontend/layout/master')
+@extends('frontend.layout.master')
 
-@section('title', 'oneblog')
-@section('topblogs')
+@section('section')
+<section class="section">
+	<div class="container">
+        <h1 class="text">
+            {{ $message ?? '' }}
+        </h1>
 
-@endsection
-@section('mainblogs')
-    <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
         <div class="page-wrapper">
             <h1 class="text">
                 {{ $message ?? '' }}
@@ -33,4 +34,5 @@
             </div>
         </div>
     </div>
+</section>
 @endsection

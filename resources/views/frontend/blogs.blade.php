@@ -1,141 +1,143 @@
-@extends('frontend/layout/master')
+@extends('frontend.layout.master')
 
+@section('section')
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8  mb-5 mb-lg-0">
 
-@section('title', 'Homepage')
-@section('topblogs')
-    <section class="section first-section">
-        @if (count($recentBlogs) == 3)
-            <div class="container-fluid">
-                <div class="masonry-blog clearfix">
-                    <div class="left-side">
-                        <div class="masonry-box post-media">
-                            <img src="{{ asset('blog-cover-images/' . $recentBlogs[1]->image) }}" alt=""
-                                height="450px">
-                            <div class="shadoweffect">
-                                <div class="shadow-desc">
-                                    <div class="blog-meta">
-                                        @forelse($recentBlogs[1]->category as $cat)
-                                            <span class="bg-aqua"><a
-                                                    href="{{ route('category.all', ['slug' => $cat->slug]) }}"
-                                                    title="">{{ $cat->name }}</a></span>
-                                        @endforeach
-
-                                        <h4><a href="{{ route('blog.one', ['slug' => $recentBlogs[1]->slug]) }}"
-                                                title="">{{ $recentBlogs[1]->name }}</a></h4>
-                                        <small><a
-                                                href="{{ route('blog.one', ['slug' => $blogs[count($blogs) - 1]->slug]) }}"
-                                                title="">{{ $recentBlogs[1]->created_at->format('dS F Y') }}</a></small>
-                                        <small><a href="#" title="">By
-                                                {{ $recentBlogs[1]->user->name }}</a></small>
-                                    </div><!-- end meta -->
-                                </div><!-- end shadow-desc -->
+					@include('frontend.layout.blogList')
+                    <article class="row mb-5">
+                        <div class="col-12">
+                            <div class="post-slider">
+                                <img loading="lazy" src="images/post/post-6.jpg" class="img-fluid" alt="post-thumb">
+                                <img loading="lazy" src="images/post/post-1.jpg" class="img-fluid" alt="post-thumb">
+                                <img loading="lazy" src="images/post/post-3.jpg" class="img-fluid" alt="post-thumb">
                             </div>
                         </div>
-                    </div>
-                    <div class="center-side ">
-                        <div class="masonry-box post-media">
-                            <img src="{{ asset('blog-cover-images/' . $recentBlogs[2]->image) }}" alt=""
-                                height="450px">
-                            <div class="shadoweffect">
-                                <div class="shadow-desc">
-                                    <div class="blog-meta">
-                                        @forelse($recentBlogs[2]->category as $cat)
-                                            <span class="bg-aqua"><a
-                                                    href="{{ route('category.all', ['slug' => $cat->slug]) }}"
-                                                    title="">{{ $cat->name }}</a></span>
-
-                                        @endforeach
-                                        <h4><a href="{{ route('blog.one', ['slug' => $recentBlogs[2]->slug]) }}"
-                                                title="">{{ $recentBlogs[2]->name }}</a></h4>
-                                        <small><a href="{{ route('blog.one', ['slug' => $recentBlogs[2]->slug]) }}"
-                                                title="">{{ $recentBlogs[2]->created_at->format('dS F Y') }}</a></small>
-                                        <small><a href="#" title=""> By
-                                                {{ $recentBlogs[2]->user->name }}</a></small>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-12 mx-auto">
+                            <h3><a class="post-title" href="post-elements.html">Elements That You Can Use To Create A New
+                                    Post On This Template.</a></h3>
+                            <ul class="list-inline post-meta mb-4">
+                                <li class="list-inline-item"><i class="ti-user mr-2"></i>
+                                    <a href="author.html">John Doe</a>
+                                </li>
+                                <li class="list-inline-item">Date : March 15, 2020</li>
+                                <li class="list-inline-item">Categories : <a href="#!" class="ml-1">Photography </a>
+                                </li>
+                                <li class="list-inline-item">Tags : <a href="#!" class="ml-1">Photo </a> ,<a
+                                        href="#!" class="ml-1">Image </a>
+                                </li>
+                            </ul>
+                            <p>Heading example Here is example of hedings. You can use this heading by following markdownify
+                                rules. For example: use # for heading 1 and use ###### for heading 6. Heading 1 Heading 2
+                                Heading 3 Heading 4 Heading 5 Heading 6 Emphasis Emphasis, aka italics, with asterisks or
+                                underscores.</p> <a href="post-elements.html" class="btn btn-outline-primary">Continue
+                                Reading</a>
                         </div>
-                    </div>
-
-                    <div class="right-side hidden-md-down">
-                        <div class="masonry-box post-media ">
-                            <img src="{{ asset('blog-cover-images/' . $recentBlogs[0]->image) }}" alt=""
-                                height="450px">
-                            <div class="shadoweffect">
-                                <div class="shadow-desc">
-                                    <div class="blog-meta">
-                                        @forelse($recentBlogs[0]->category as $cat)
-                                            <span class="bg-aqua"><a
-                                                    href="{{ route('category.all', ['slug' => $cat->slug]) }}"
-                                                    title="">{{ $cat->name }}</a></span>
-                                        @endforeach
-                                        <h4><a href="{{ route('blog.one', ['slug' => $recentBlogs[0]->slug]) }}"
-                                                title="">{{ $recentBlogs[0]->name }}</a></h4>
-                                        <small><a href="{{ route('blog.one', ['slug' => $recentBlogs[0]->slug]) }}"
-                                                title="">{{ $recentBlogs[0]->created_at->format('dS F Y') }}</a></small>
-                                        <small><a href="#" title="">By
-                                                {{ $recentBlogs[0]->user->name }}</a></small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    </article>
                 </div>
+				
+                <aside class="col-lg-4">
+                    <!-- Search -->
+                    <div class="widget">
+                        <h5 class="widget-title"><span>Search</span></h5>
+                        <form action="/logbook-hugo/search" class="widget-search">
+                            <input id="search-query" name="s" type="search"
+                                placeholder="Type &amp; Hit Enter...">
+                            <button type="submit"><i class="ti-search"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- categories -->
+                    <div class="widget">
+                        <h5 class="widget-title"><span>Categories</span></h5>
+                        <ul class="list-unstyled widget-list">
+                            <li><a href="#!" class="d-flex">Four seasone
+                                    <small class="ml-auto">(1)</small></a>
+                            </li>
+                            <li><a href="#!" class="d-flex">Newyork city
+                                    <small class="ml-auto">(2)</small></a>
+                            </li>
+                            <li><a href="#!" class="d-flex">Photobooth
+                                    <small class="ml-auto">(1)</small></a>
+                            </li>
+                            <li><a href="#!" class="d-flex">Photography
+                                    <small class="ml-auto">(2)</small></a>
+                            </li>
+                            <li><a href="#!" class="d-flex">Videography
+                                    <small class="ml-auto">(1)</small></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- tags -->
+                    <div class="widget">
+                        <h5 class="widget-title"><span>Tags</span></h5>
+                        <ul class="list-inline widget-list-inline">
+                            <li class="list-inline-item"><a href="#!">Booth</a>
+                            </li>
+                            <li class="list-inline-item"><a href="#!">City</a>
+                            </li>
+                            <li class="list-inline-item"><a href="#!">Image</a>
+                            </li>
+                            <li class="list-inline-item"><a href="#!">New</a>
+                            </li>
+                            <li class="list-inline-item"><a href="#!">Photo</a>
+                            </li>
+                            <li class="list-inline-item"><a href="#!">Seasone</a>
+                            </li>
+                            <li class="list-inline-item"><a href="#!">Video</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- latest post -->
+                    <div class="widget">
+                        <h5 class="widget-title"><span>Latest Article</span></h5>
+                        <!-- post-item -->
+                        <ul class="list-unstyled widget-list">
+                            <li class="media widget-post align-items-center">
+                                <a href="post-elements.html">
+                                    <img loading="lazy" class="mr-3" src="images/post/post-6.jpg">
+                                </a>
+                                <div class="media-body">
+                                    <h5 class="h6 mb-0"><a href="post-elements.html">Elements That You Can Use To Create A
+                                            New Post On
+                                            This Template.</a></h5>
+                                    <small>March 15, 2020</small>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="list-unstyled widget-list">
+                            <li class="media widget-post align-items-center">
+                                <a href="post-details-1.html">
+                                    <img loading="lazy" class="mr-3" src="images/post/post-1.jpg">
+                                </a>
+                                <div class="media-body">
+                                    <h5 class="h6 mb-0"><a href="post-details-1.html">Cheerful Loving Couple Bakers
+                                            Drinking Coffee</a>
+                                    </h5>
+                                    <small>March 14, 2020</small>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="list-unstyled widget-list">
+                            <li class="media widget-post align-items-center">
+                                <a href="post-details-2.html">
+                                    <img loading="lazy" class="mr-3" src="images/post/post-2.jpg">
+                                </a>
+                                <div class="media-body">
+                                    <h5 class="h6 mb-0"><a href="post-details-2.html">Cheerful Loving Couple Bakers
+                                            Drinking Coffee</a>
+                                    </h5>
+                                    <small>March 14, 2020</small>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </aside>
             </div>
-        @endif
+        </div>
     </section>
-@endsection
-@section('mainblogs')
-    <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-        @if (count($blogs) > 0)
-            <div class="widget ">
-                <div class="page-wrapper ">
-                    <div class="blog-list clearfix" id="blog-list">
-                        @include('frontend.layout.blogList')
-                    </div>
-                </div>
-
-                <hr class="invis">
-                <div class="auto-load text-center" style="display: none;">
-                    <svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height="60"
-                        viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
-                        <path fill="#000"
-                            d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50">
-                            <animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s"
-                                from="0 50 50" to="360 50 50" repeatCount="indefinite" />
-                        </path>
-                    </svg>
-                </div>
-            </div>
-        @else
-            @if (Auth::check())
-                @if (Auth::user()->role == 'admin')
-                    <div class="container">
-                        <h1 class="text-center">Currently Don't Have Enough Blogs To Display. </h1>
-                        <h3 class="text-center">You are admin so you can't Create Blog</h3>
-                    </div>
-                @else
-                    <div class="container">
-                        <h1 class="text-center">Currently Don't Have Enough Blogs To Display. </h1>
-                        <h3 class="text-center"><a href="{{ route('blog.create') }}">
-                                Click here to create a new blog
-                            </a></h3>
-                    </div>
-                @endif
-            @else
-                <div class="container">
-                    <h1 class="text-center">Currently Don't Have Enough Blogs To Display.</h1>
-                    <h3 class="text-center">
-                        <a href="{{ route('login') }}">
-                            Click here to Login
-                        </a>
-                    </h3>
-                </div>
-            @endif
-
-            <h6 class="text-center">Add atleast 3 blogs </h6>
-        @endif
-    </div>
 @endsection

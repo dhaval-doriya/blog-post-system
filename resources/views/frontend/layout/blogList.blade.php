@@ -1,28 +1,41 @@
-@foreach($blogs as $blog)
-<div class="blog-box row">
-    <div class="col-md-4">
-        <div class="post-media">
-            <a href="{{route('blog.one', ['slug' => $blog->slug])}}" title="">
-                <img class="mt-4" src="{{ asset('blog-cover-images//'.$blog->image) }}" alt=" " height="250px">
-                <div class="hovereffect"></div>
-            </a>
+@foreach ($blogs as $blog)
+    <article class="row mb-5">
+        <div class="col-12">
+            <div class="post-slider">
+                <img loading="lazy"  src={{ asset('client/images/post/post-6.jpg') }} class="img-fluid" alt="post-thumb">
+                {{-- <img loading="lazy"  src="{{ asset('blog-cover-images//' . $blog->image) }}" class="img-fluid" alt="post-thumb"> --}}
+
+                {{-- <img loading="lazy" src="images/post/post-1.jpg" class="img-fluid" alt="post-thumb">
+            <img loading="lazy" src="images/post/post-3.jpg" class="img-fluid" alt="post-thumb"> --}}
+            </div>
         </div>
-    </div>
-    <div class="blog-meta big-meta col-md-8">
-        @forelse($blog->category as $cat)
-        <span class="bg-aqua"><a href="{{route('category.all', ['slug' => $cat->slug])}}" title="">{{$cat->name}} </a></span>&nbsp; &nbsp;
+        <div class="col-12 mx-auto">
+            <h3><a class="post-title" href="{{ route('blog.one', ['slug' => $blog->slug]) }}">
+                    {{ $blog->name }}</a></h3>
+            <ul class="list-inline post-meta mb-4">
+                <li class="list-inline-item"><i class="ti-user mr-2"></i>
+                    <a href={{ route('blog.user', ['id' => $blog->user->id]) }}>by {{ $blog->user->name }}</a>
+                </li>
+                <li class="list-inline-item">{{ $blog->created_at->format('dS F Y') }}</li>
 
+                <li class="list-inline-item">Categories :
+                    @forelse($blog->category as $cat)
+                        <a href={{ route('category.all', ['slug' => $cat->slug]) }} title="">{{ $cat->name }}
+                        </a>
+                    @endforeach
 
-        {{-- <span class="bg-aqua"><a href="?slug={{$cat->slug}}" title="">{{$cat->name}} </a></span>&nbsp; &nbsp; --}}
+                </li>
+                {{-- <li class="list-inline-item">Tags : <a href="#!" class="ml-1">Photo </a> ,<a href="#!" class="ml-1">Image </a></li> --}}
+                <li>
+                    <small><a href="{{ route('blog.one', ['slug' => $blog->slug]) }}"
+                            title="">{{ $blog->created_at->format('dS F Y') }}</small>
 
-        @endforeach
-        <h4><a href="{{route('blog.one', ['slug' => $blog->slug])}}" title=""> {{$blog->name}}</a></h4>
-        <p>{{$blog->short_description}}</p>
-        <small><a href="{{route('blog.one', ['slug' => $blog->slug])}}" title=""><i class="fa fa-eye"></i> {{$blog->views}}</a></small>
-        <small><a href="{{route('blog.one', ['slug' => $blog->slug])}}" title="">{{ $blog->created_at->format('dS F Y')}}</small>
-        <small><a href="{{route('blog.user' , ['id' => $blog->user->id ])}}" title="">by {{$blog->user->name}}</a></small>
-    </div>
-</div>
-<hr class="invis">
+                    <small><a href="{{ route('blog.one', ['slug' => $blog->slug]) }}" title=""><i
+                                class="fa fa-eye"></i> {{ $blog->views }}</a></small>
+
+                </li>
+            </ul>
+            <p></a>
+        </div>
+    </article>
 @endforeach
-

@@ -1,223 +1,225 @@
 <!DOCTYPE html>
-<html lang="en">
 
-<!-- Basic -->
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<html lang="en-us">
 
-<!-- Mobile Metas -->
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+    <meta charset="utf-8">
+    <title>Logbook - Homepage</title>
 
-<!-- Site Metas -->
-<title>@yield('title')
-</title>
-<meta name="keywords" content="">
-<meta name="description" content="">
-<meta name="author" content="">
+    <!-- mobile responsive meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    <meta name="description" content="This is meta description">
+    <meta name="author" content="Themefisher">
 
-<!-- Site Icons -->
-<link rel="shortcut icon" href="{{ asset('assets/frontside/images/favicon.ico') }} " type="image/x-icon" />
-<link rel="apple-touch-icon" href="{{ asset('assets/frontside/images/apple-touch-icon.png') }}">
-<script src="{{ asset('assets/dashboard/plugins/jquery/jquery.min.js') }}"></script>
+    <!-- theme meta -->
+    <meta name="theme-name" content="logbook" />
 
-<!-- Design fonts -->
-<link href="{{ asset('https://fonts.googleapis.com/css?family=Droid+Sans:400,700') }}" rel="stylesheet">
+    <!-- plugins -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/opensans/v18/mem8YaGs126MiZpBA-UFWJ0bbck.woff2"
+        style="font-display: optional;">
+    <link rel="stylesheet" href={{ asset('client/plugins/bootstrap/bootstrap.min.css') }}>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Montserrat:600%7cOpen&#43;Sans&amp;display=swap" media="screen">
 
-<!-- Bootstrap core CSS -->
-<link href="{{ asset('assets/frontside/css/bootstrap.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href={{ asset('client/plugins/themify-icons/themify-icons.css') }}>
+    <link rel="stylesheet" href={{ asset('client/plugins/slick/slick.css') }}>
 
-<!-- FontAwesome Icons core CSS -->
-<link href="{{ asset('assets/frontside/css/font-awesome.min.css') }}" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href={{ asset('client/css/style.css') }}>
 
-<!-- Custom styles for this template -->
-<link href="{{ asset('assets/frontside/style.css') }}" rel="stylesheet">
+    <!--Favicon-->
+    <link rel="shortcut icon" href={{ asset('client/images/favicon.png') }} type="image/x-icon">
+    <link rel="icon" href={{ asset('client/images/favicon.png') }} type="image/x-icon">
 
-<!-- Responsive styles for this template -->
-<link href="{{ asset('assets/frontside/css/responsive.css') }}" rel="stylesheet">
-
-<!-- Colors for this template -->
-<link href="{{ asset('assets/frontside/css/colors.css') }}" rel="stylesheet">
-
-<!-- Version Garden CSS for this template -->
-<link href="{{ asset('assets/frontside/css/version/garden.css') }}" rel="stylesheet">
-
-<!-- sweetalert2  -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.5.1/sweetalert2.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.5.1/sweetalert2.all.min.js"></script>
-
-
-<link href="{{ asset('assets/custom_css/socialmedia.css') }}" rel="stylesheet">
-
-
-<meta name="csrf-token" content="{{ csrf_token() }}">
-@yield('css')
+    <!-- sweetalert2  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.5.1/sweetalert2.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.5.1/sweetalert2.all.min.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 </head>
 
 <body>
-    <div id="wrapper">
-        <!-- end top-search -->
-        <div class="topbar-section">
-            <div class="container-fluid">
-                <div class="d-flex justify-content-between">
-                    <div class="">
-                        <a class="text-white" onclick="window.location.replace(document.referrer)"> <i
-                                class="fa fa-2x fa-arrow-left" aria-hidden="true"> </i>
-                        </a>
-                    </div>
-                    <div>
-                        <h1 class="text-white text-end">
-                            <a href="{{ route('blog.all') }}">
-                                Blog System
+    <!-- navigation -->
+    <header class="sticky-top bg-white border-bottom border-default">
+        <div class="container">
+
+            <nav class="navbar navbar-expand-lg navbar-white">
+                <a class="navbar-brand" href={{ route('blog.all') }}>
+                    <img class="img-fluid" width="150px" src={{ asset('client/images/logo.png') }} alt="LogBook">
+                </a>
+                <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+                    <i class="ti-menu"></i>
+                </button>
+
+                <div class="collapse navbar-collapse text-center" id="navigation">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                homepage
+                                {{-- <i class="ti-angle-down ml-1"></i> --}}
                             </a>
-                        </h1>
-                    </div>
-                    <div>
-                        @if (Auth::user())
+                            {{-- <div class="dropdown-menu">
+                     <a class="dropdown-item" href="index-full.html">Homepage Full Width</a>
+                     <a class="dropdown-item" href="index-full-left.html">Homepage Full With Left Sidebar</a>
+                     <a class="dropdown-item" href="index-full-right.html">Homepage Full With Right Sidebar</a>
+                     <a class="dropdown-item" href="index-list.html">Homepage List Style</a>
+                     <a class="dropdown-item" href="index-list-left.html">Homepage List With Left Sidebar</a>
+                     <a class="dropdown-item" href="index-list-right.html">Homepage List With Right Sidebar</a>
+                  </div> --}}
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About</a>
+                        </li>
 
-                            <a class="nav-link  text-right" data-toggle="dropdown" href="#">
-                                <div class="user-panel pb-2 mb-2 d-flex ">
-                                    <p>
-                                        {{ Auth::user()->name }}
+                        <li>
+                            {{-- @if (Auth::user())
 
-                                    </p>
-                                    <div class="image ">
-                                        @if (Auth::user()->profile_image)
-                                            <img src="  {{ asset('profile-images/' . Auth::user()->profile_image) }}"
-                                                class="img-circle rounded-circle " alt="User Image" height="45px"
-                                                width="45px">
-                                        @else
-                                            <img src="{{ asset('assets/dashboard/dist/img/user2-160x160.jpg') }}"
-                                                class="img-circle elevation-2 rounded-circle " alt="User Image"
-                                                height="45px" width="45px">
-                                        @endif
+                                <a class="nav-link  text-right" data-toggle="dropdown" href="#">
+                                    <div class="user-panel pb-2 mb-2 d-flex ">
+                                        <p>
+                                            {{ Auth::user()->name }}
+                                        </p>
+                                        <div class="image ">
+                                            @if (Auth::user()->profile_image)
+                                                <img src="  {{ asset('profile-images/' . Auth::user()->profile_image) }}"
+                                                    class="img-circle rounded-circle " alt="User Image" height="45px"
+                                                    width="45px">
+                                            @else
+                                                <img src="{{ asset('assets/dashboard/dist/img/user2-160x160.jpg') }}"
+                                                    class="img-circle elevation-2 rounded-circle " alt="User Image"
+                                                    height="45px" width="45px">
+                                            @endif
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                            <div class=" dropdown-menu dropdown-menu-lg dropdown-menu-right ">
-                                <a href=" {{ route('dashboard') }}">
-                                    <button class="dropdown-item" class="btn btn-success"> Dashboard</button>
                                 </a>
-                                <div class="dropdown-divider"></div>
-                                <button class="dropdown-item  user-logout" data-action="{{ route('user.logout') }}">
-                                    Log out
-                                </button>
-                            </div>
-                            <form class="dropdown-item" action="{{ route('user.logout') }}" method="post"
-                                id="user_logout">
-                                @csrf
-                                <button hidden class="dropdown-item" type="submit" class="btn btn-"> Log out</button>
-                            </form>
-                        @else
-                            <a href="{{ route('login') }}" class="nav-link text-right">
-                                <button type="button" class="btn btn-dark">Login </button>
+                                <div class=" dropdown-menu dropdown-menu-lg dropdown-menu-right ">
+                                    <a href=" {{ route('dashboard') }}">
+                                        <button class="dropdown-item" class="btn btn-success"> Dashboard</button>
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <button class="dropdown-item  user-logout"
+                                        data-action="{{ route('user.logout') }}">
+                                        Log out
+                                    </button>
+                                </div>
+                                <form class="dropdown-item" action="{{ route('user.logout') }}" method="post"
+                                    id="user_logout">
+                                    @csrf
+                                    <button hidden class="dropdown-item" type="submit" class="btn btn-"> Log
+                                        out</button>
+                                </form>
+                            @else
+                                <a href="{{ route('login') }}" class="nav-link text-right">
+                                    <button type="button" class="btn btn-dark">Login </button>
+                                </a>
+                            @endif --}}
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">Pages <i class="ti-angle-down ml-1"></i>
                             </a>
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="header-section ">
-            <!-- 3main image secrion  -->
-            @yield('topblogs')
-            <section class="section wb">
-                <div class="container-fluid">
-                    <div class="row">
-                        @empty($categories)
-                        @else
-                            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12 ">
-                                <div class="widget ">
-                                    <h6 class="widget-title">All Categories</h6>
-                                    <div class="link-widget">
-                                        <ul>
-                                            @foreach ($categories as $cat)
-                                                <li><a href="{{ route('category.all', ['slug' => $cat->slug]) }}">{{ $cat->name }}
-                                                    </a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        @endempty
-
-
-                        @yield('mainblogs')
-
-                        <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                            <div class="sidebar widget ">
-                                <div class="widget">
-                                    <h2 class="widget-title">Search</h2>
-                                    <form class="form-inline search-form" id="search-form" method="get">
-
-                                        <div class="form-group">
-                                            <input id="search" type="text" class="form-control"
-                                                placeholder="Search Blog " name="search" required>
-                                        </div>
-                                        <!-- <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button> -->
-                                    </form>
-                                </div>
-
-
-                                @if (count($recentBlogs) > 0)
-                                    <div class="widget">
-                                        <h2 class="widget-title">Recent Posts</h2>
-                                        <div class="blog-list-widget">
-                                            <div class="list-group">
-                                                @foreach ($recentBlogs as $blog)
-                                                    <a href=" {{ route('blog.one', ['slug' => $blog->slug]) }}"
-                                                        class="list-group-item list-group-item-action flex-column align-items-start">
-                                                        <div class="w-100 justify-content-between">
-                                                            <img src="{{ asset('blog-cover-images/' . $blog->image) }}"
-                                                                alt="" class="img-fluid float-left">
-                                                            <h5 class="mb-1">{{ $blog->name }}</h5>
-                                                            <small>{{ $blog->created_at->format('dS F Y') }}</small>
-                                                        </div>
-                                                    </a>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                @endif
-                                @if ($popularCategories ?? [])
-                                    <div class="widget">
-                                        <h2 class="widget-title">Popular Categories</h2>
-                                        <div class="link-widget">
-                                            <ul>
-                                                @foreach ($popularCategories as $category)
-                                                    <li><a
-                                                            href="{{ route('category.all', ['slug' => $category['slug']]) }}">{{ $category['name'] }}
-                                                            <span>({{ $category['total'] }})</span></a></li>
-                                                @endforeach
-
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                @endif
-                            </div>
+                            {{-- <div class="dropdown-menu">
+                     <a class="dropdown-item" href="author.html">Author</a>
+                     <a class="dropdown-item" href="post-details-1.html">Post Details 1</a>
+                     <a class="dropdown-item" href="post-details-2.html">Post Details 2</a>
+                     <a class="dropdown-item" href="post-elements.html">Post Elements</a>
+                     <a class="dropdown-item" href="privacy-policy.html">Privacy Policy</a>
+                     <a class="dropdown-item" href="terms-conditions.html">Terms Conditions</a>
+                  </div> --}}
+                        </li>
+                    </ul>
+                    <!-- search -->
+                    <div class="search px-4">
+                        <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+                        <div class="search-wrapper">
+                            {{-- action="javascript:void(0)" --}}
+                            <form class="form-inline search-form" id="search-form" class="h-100" method="get">
+                                <input class="search-box pl-4" id="search-query" name="search" type="search"
+                                    placeholder="Type &amp; Hit Enter...">
+                            </form>
+                            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
                         </div>
                     </div>
+
                 </div>
-            </section>
-
-
+            </nav>
         </div>
+    </header>
+    <!-- /navigation -->
 
-        <!-- Core JavaScript
-    ================================================== -->
-        <script src="{{ asset('assets/frontside/js/jquery.min.js') }}"></script>
-        <script src="{{ asset('assets/frontside/js/tether.min.js') }}"></script>
-        <script src="{{ asset('assets/frontside/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('assets/frontside/js/custom.js') }}"></script>
-        <script src="{{ asset('assets/custom_js/frontend/logout.js') }}"></script>
-        <script src="https://kit.fontawesome.com/704ff50790.js" crossorigin="anonymous"></script>
-        {{-- jquery validator  --}}
-        <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
 
-        <script src="{{ asset('assets/custom_js/frontend/infiniteLoadBlog.js') }}"></script>
+
+    @yield('section')
+
+    <footer class="section-sm pb-0 border-top border-default">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-md-3 mb-4">
+                    <a class="mb-4 d-block" href="index.html">
+                        <img class="img-fluid" width="150px" src={{ asset('client/images/logo.png') }}
+                            alt="LogBook">
+                    </a>
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
+                        ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-6 mb-4">
+                    <h6 class="mb-4">Quick Links</h6>
+                    <ul class="list-unstyled footer-list">
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-conditions.html">Terms Conditions</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-6 mb-4">
+                    <h6 class="mb-4">Social Links</h6>
+                    <ul class="list-unstyled footer-list">
+                        <li><a href="#">facebook</a></li>
+                        <li><a href="#">twitter</a></li>
+                        <li><a href="#">linkedin</a></li>
+                        <li><a href="#">github</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 mb-4">
+                    <h6 class="mb-4">Subscribe Newsletter</h6>
+                    <form class="subscription" action="javascript:void(0)" method="post">
+                        <div class="position-relative">
+                            <i class="ti-email email-icon"></i>
+                            <input type="email" class="form-control" placeholder="Your Email Address">
+                        </div>
+                        <button class="btn btn-primary btn-block rounded" type="submit">Subscribe now</button>
+                    </form>
+                </div>
+            </div>
+            <div class="scroll-top">
+                <a href="javascript:void(0);" id="scrollTop"><i class="ti-angle-up"></i></a>
+            </div>
+            <div class="text-center">
+                {{-- <p class="content">&copy; 2020 - Design &amp; Develop By <a href="https://themefisher.com/" target="_blank">Themefisher</a></p> --}}
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- JS Plugins -->
+    <script src="{{ asset('client/plugins/jQuery/jquery.min.js') }}"></script>
+    <script src="{{ asset('client/plugins/bootstrap/bootstrap.min.js') }}" async></script>
+    <script src="{{ asset('client/plugins/slick/slick.min.js') }}"></script>
+    {{-- //custom  --}}
+    <script src="{{ asset('assets/frontside/js/custom.js') }}"></script>
+    <script src="{{ asset('assets/custom_js/frontend/logout.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
+    <script src="{{ asset('assets/custom_js/frontend/infiniteLoadBlog.js') }}"></script>
+
+    <!-- Main Script -->
+    <script src="{{ asset('client/js/script.js') }}"></script>
 </body>
 
 </html>
