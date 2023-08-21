@@ -59,84 +59,69 @@
                                 homepage
                                 {{-- <i class="ti-angle-down ml-1"></i> --}}
                             </a>
-                            {{-- <div class="dropdown-menu">
-                     <a class="dropdown-item" href="index-full.html">Homepage Full Width</a>
-                     <a class="dropdown-item" href="index-full-left.html">Homepage Full With Left Sidebar</a>
-                     <a class="dropdown-item" href="index-full-right.html">Homepage Full With Right Sidebar</a>
-                     <a class="dropdown-item" href="index-list.html">Homepage List Style</a>
-                     <a class="dropdown-item" href="index-list-left.html">Homepage List With Left Sidebar</a>
-                     <a class="dropdown-item" href="index-list-right.html">Homepage List With Right Sidebar</a>
-                  </div> --}}
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="index-full.html">Homepage Full Width</a>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="about.html">About</a>
                         </li>
 
                         <li>
-                            {{-- @if (Auth::user())
-
-                                <a class="nav-link  text-right" data-toggle="dropdown" href="#">
-                                    <div class="user-panel pb-2 mb-2 d-flex ">
-                                        <p>
-                                            {{ Auth::user()->name }}
-                                        </p>
-                                        <div class="image ">
-                                            @if (Auth::user()->profile_image)
-                                                <img src="  {{ asset('profile-images/' . Auth::user()->profile_image) }}"
-                                                    class="img-circle rounded-circle " alt="User Image" height="45px"
-                                                    width="45px">
-                                            @else
-                                                <img src="{{ asset('assets/dashboard/dist/img/user2-160x160.jpg') }}"
-                                                    class="img-circle elevation-2 rounded-circle " alt="User Image"
-                                                    height="45px" width="45px">
-                                            @endif
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class=" dropdown-menu dropdown-menu-lg dropdown-menu-right ">
-                                    <a href=" {{ route('dashboard') }}">
-                                        <button class="dropdown-item" class="btn btn-success"> Dashboard</button>
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <button class="dropdown-item  user-logout"
-                                        data-action="{{ route('user.logout') }}">
-                                        Log out
-                                    </button>
-                                </div>
-                                <form class="dropdown-item" action="{{ route('user.logout') }}" method="post"
-                                    id="user_logout">
-                                    @csrf
-                                    <button hidden class="dropdown-item" type="submit" class="btn btn-"> Log
-                                        out</button>
-                                </form>
-                            @else
-                                <a href="{{ route('login') }}" class="nav-link text-right">
-                                    <button type="button" class="btn btn-dark">Login </button>
-                                </a>
-                            @endif --}}
+                            @if (Auth::user())
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                {{ Auth::user()->name }}
+                                {{-- <div class="image ">
+                                        @if (Auth::user()->profile_image)
+                                            <img src="  {{ asset('profile-images/' . Auth::user()->profile_image) }}"
+                                                class="img-circle rounded-circle " alt="User Image" height="45px"
+                                                width="45px">
+                                        @else
+                                            <img src="{{ asset('assets/dashboard/dist/img/user2-160x160.jpg') }}"
+                                                class="img-circle elevation-2 rounded-circle " alt="User Image"
+                                                height="45px" width="45px">
+                                        @endif
+                                    </div> --}}
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href={{ route('dashboard') }}>Dashboard</a>
+                                {{-- <a class="dropdown-item"  href={{ route('dashboard') }}>Dashboard</a> --}}
+                                <button class="dropdown-item  user-logout" data-action="{{ route('user.logout') }}">
+                                    Log out
+                                </button>
+                            </div>
+                        </li>
+                        <div class=" dropdown-menu">
+                            <a href=" {{ route('dashboard') }}">
+                                <button class="dropdown-item" class="btn btn-success"> Dashboard</button>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <button class="dropdown-item  user-logout" data-action="{{ route('user.logout') }}">
+                                Log out
+                            </button>
+                        </div>
+                        <form class="dropdown-item" action="{{ route('user.logout') }}" method="post"
+                            id="user_logout">
+                            @csrf
+                            <button hidden class="dropdown-item" type="submit" class="btn btn-"> Log
+                                out</button>
+                        </form>
+                    @else
+                        {{-- <button type="button" class="btn btn-dark"> </button> --}}
+                        <a href="{{ route('login') }}" class="nav-link">Login</a>
+                        @endif
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="contact.html">Contact</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="#" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">Pages <i class="ti-angle-down ml-1"></i>
-                            </a>
-                            {{-- <div class="dropdown-menu">
-                     <a class="dropdown-item" href="author.html">Author</a>
-                     <a class="dropdown-item" href="post-details-1.html">Post Details 1</a>
-                     <a class="dropdown-item" href="post-details-2.html">Post Details 2</a>
-                     <a class="dropdown-item" href="post-elements.html">Post Elements</a>
-                     <a class="dropdown-item" href="privacy-policy.html">Privacy Policy</a>
-                     <a class="dropdown-item" href="terms-conditions.html">Terms Conditions</a>
-                  </div> --}}
                         </li>
                     </ul>
                     <!-- search -->
                     <div class="search px-4">
                         <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
                         <div class="search-wrapper">
-                            {{-- action="javascript:void(0)" --}}
+                            {{-- <form action="javascript:void(0)" class="form-inline search-form" id="search-form" class="h-100" method="get"> --}}
                             <form class="form-inline search-form" id="search-form" class="h-100" method="get">
                                 <input class="search-box pl-4" id="search-query" name="search" type="search"
                                     placeholder="Type &amp; Hit Enter...">
