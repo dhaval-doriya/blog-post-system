@@ -7,8 +7,7 @@
 			<div class="col-lg-10 mx-auto mb-4">
 				<h1 class="h2 mb-3">{{ $blog->name }}</h1>
 				<ul class="list-inline post-meta mb-3">
-					<li class="list-inline-item"><i class="ti-user mr-2"></i><a href="author.html">John
-                     Doe</a>
+					<li class="list-inline-item"><i class="ti-user mr-2"></i><a href={{ route('blog.user', ['id' => $blog->user->id]) }}>{{ $blog->user->name }}</a>
 					</li>
 					<li class="list-inline-item">Date : March 14, 2020</li>
 					<li class="list-inline-item">Categories : 
@@ -16,8 +15,6 @@
                                 <a href={{ route('category.all', ['slug' => $cat->slug]) }} class="ml-1">{{ $cat->name }}  </a>
                         @endforeach               
 					</li>
-					{{-- <li class="list-inline-item">Tags : <a href="#!" class="ml-1">Photo </a> ,<a href="#!" class="ml-1">Image </a>
-					</li> --}}
 				</ul>
 			</div>
 			<div class="col-12 mb-3">

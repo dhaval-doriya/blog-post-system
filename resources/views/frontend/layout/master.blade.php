@@ -59,9 +59,9 @@
                                 homepage
                                 {{-- <i class="ti-angle-down ml-1"></i> --}}
                             </a>
-                            <div class="dropdown-menu">
+                            {{-- <div class="dropdown-menu">
                                 <a class="dropdown-item" href="index-full.html">Homepage Full Width</a>
-                            </div>
+                            </div> --}}
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="about.html">About</a>

@@ -3,7 +3,9 @@
 namespace App\Console\Commands;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
@@ -52,6 +54,8 @@ class CreateAdmin extends Command
                 'role' => 'admin',
                 'password' =>   Hash::make('admin123'),
             ]);
+
+            DB::table('users')->where('id' ,$user->id)->update( ['email_verified_at' => Carbon::now() ]);
 
             Log::info($user);
 
