@@ -24,10 +24,11 @@
 			</div>
 			<div class="col-lg-10 mx-auto">
 				<div class="content">
-                    {!! html_entity_decode($blog->description) !!}
+                    <!-- {!! html_entity_decode($blog->description) !!} -->
 				</div>
 			</div>
 		</article>
+		@include('frontend.layout.comment' , [ 'blog'=> $blog])
 	</div>
 </section>
 

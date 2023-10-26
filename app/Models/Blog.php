@@ -50,4 +50,15 @@ class Blog extends Model
         return $this->sum('views');
     }
 
+
+       /**
+     * The has Many Relationship
+     *
+     * @var array
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->whereNull('parent_id');
+    }
+
 }

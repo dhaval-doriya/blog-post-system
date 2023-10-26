@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
@@ -67,4 +68,7 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('/blog/{slug}', [HomeController::class, 'blog'])->name('blog.one');
     Route::get('/cat/{slug}', [HomeController::class, 'category'])->name('category.all');
     Route::get('/user/{id}', [HomeController::class, 'blogsByUser'])->name('blog.user');
+
+    Route::post('/comment/add', [CommentController::class, 'store'])->name('comments.store');
+
 });
