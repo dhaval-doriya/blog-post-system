@@ -13,16 +13,16 @@
                 <li class="list-inline-item"><i class="ti-user mr-2"></i>
                     <a href={{ route('blog.user', ['id' => $blog->user->id]) }}>by {{ $blog->user->name }}</a>
                 </li>
-                <li class="list-inline-item">{{ $blog->created_at->format('dS F Y') }}</li>
+                <li class="list-inline-item">{{ $blog->created_at }}</li>
                 <li class="list-inline-item">Categories :
                     @forelse($blog->category as $cat)
                         <a href={{ route('category.all', ['slug' => $cat->slug]) }} title="">{{ $cat->name }}
                         </a>
                     @endforeach
-                </li>
+                </li>               
                 <li>
                     <small><a href="{{ route('blog.one', ['slug' => $blog->slug]) }}"
-                            title="">{{ $blog->created_at->format('dS F Y') }}</small>
+                            title="">{{ $blog->created_at }}</small>
 
                     <small><a href="{{ route('blog.one', ['slug' => $blog->slug]) }}" title=""><i
                                 class="fa fa-eye"></i> {{ $blog->views }}</a></small>

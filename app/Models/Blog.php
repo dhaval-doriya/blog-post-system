@@ -25,6 +25,10 @@ class Blog extends Model
             return 'blog-cover-images/' . $value;
     }
 
+    function getCreatedAtAttribute($value){
+        return Carbon::parse($value)->format('dS F Y');
+    }
+
     public function user()
     {
         return $this->hasOne(User::class , 'id','user_id');

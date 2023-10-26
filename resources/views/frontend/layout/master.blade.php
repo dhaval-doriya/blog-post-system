@@ -59,12 +59,9 @@
                                 homepage
                                 {{-- <i class="ti-angle-down ml-1"></i> --}}
                             </a>
-                            {{-- <div class="dropdown-menu">
-                                <a class="dropdown-item" href="index-full.html">Homepage Full Width</a>
-                            </div> --}}
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
+                            <a class="nav-link" href="#">About</a>
                         </li>
 
                         <li>
@@ -114,7 +111,7 @@
                         @endif
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
+                            <a class="nav-link" href="#">Contact</a>
                         </li>
                     </ul>
                     <!-- search -->
@@ -144,7 +141,7 @@
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-md-3 mb-4">
-                    <a class="mb-4 d-block" href="index.html">
+                    <a class="mb-4 d-block" href="/">
                         <img class="img-fluid" width="150px" src={{ asset('client/images/logo.png') }}
                             alt="LogBook">
                     </a>
@@ -155,10 +152,10 @@
                 <div class="col-lg-2 col-md-3 col-6 mb-4">
                     <h6 class="mb-4">Quick Links</h6>
                     <ul class="list-unstyled footer-list">
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="terms-conditions.html">Terms Conditions</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms Conditions</a></li>
                     </ul>
                 </div>
 
