@@ -22,8 +22,7 @@
 			</div>
 			<div class="col-12 mb-3">
 				<div class="post-slider">
-					<img src={{ asset('client/images/post/post-1.jpg') }} class="img-fluid" alt="post-thumb">
-                    {{-- <img src="{{ asset('blog-cover-images/' . $blog->image) }}" alt="" height="500px" width="auto"> --}}
+                    <img src="{{ asset($blog->image) }}" alt="" height="500px" width="auto">
 				</div>
 			</div>
 			<div class="col-lg-10 mx-auto">

@@ -21,6 +21,9 @@ class Blog extends Model
         'short_description'
     ];
 
+    function getImageAttribute($value){
+            return 'blog-cover-images/' . $value;
+    }
 
     public function user()
     {

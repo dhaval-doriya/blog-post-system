@@ -7,7 +7,7 @@
                 <div class="col-lg-8  mb-5 mb-lg-0">
 
 					@include('frontend.layout.blogList')
-                    <article class="row mb-5">
+                    <!-- <article class="row mb-5">
                         <div class="col-12">
                             <div class="post-slider">
                                 <img loading="lazy" src="images/post/post-6.jpg" class="img-fluid" alt="post-thumb">
@@ -35,21 +35,20 @@
                                 underscores.</p> <a href="post-elements.html" class="btn btn-outline-primary">Continue
                                 Reading</a>
                         </div>
-                    </article>
+                    </article> -->
                 </div>
 				
                 <aside class="col-lg-4">
                     <!-- Search -->
                     <div class="widget">
                         <h5 class="widget-title"><span>Search</span></h5>
-                        <form action="/logbook-hugo/search" class="widget-search">
-                            <input id="search-query" name="s" type="search"
+                        <form method="GET" class="widget-search">
+                            <input id="search-query" name="search" type="search"
                                 placeholder="Type &amp; Hit Enter...">
-                            <button type="submit"><i class="ti-search"></i>
+                                <button type="submit"><i class="ti-search"></i>
                             </button>
                         </form>
                     </div>
-
                     <!-- categories -->
                     <div class="widget">
                         <h5 class="widget-title"><span>Categories</span></h5>
